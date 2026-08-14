@@ -18,18 +18,18 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: import('@/pages/auth/LoginPage.vue'),
+      component: () => import('@/pages/auth/LoginPage.vue'),
     },
     {
       path: '/user',
       name: 'user',
-      component: import('@/pages/user/UserHomePage.vue'),
+      component: () => import('@/pages/user/UserHomePage.vue'),
       meta: { requiresAuth: true, role: 'USER' },
     },
     {
       path: '/admin',
       name: 'admin',
-      component: import('@/pages/admin/AdminHomePage.vue'),
+      component: () => import('@/pages/admin/AdminHomePage.vue'),
       meta: { requiresAuth: true, role: 'ADMIN' },
     },
   ],
