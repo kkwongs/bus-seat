@@ -22,9 +22,15 @@ const router = createRouter({
     },
     {
       path: '/user',
-      name: 'user',
-      component: () => import('@/pages/user/UserHomePage.vue'),
+      component: () => import('@/layouts/UserLayout.vue'),
       meta: { requiresAuth: true, role: 'USER' },
+      children: [
+        {
+          path: 'my',
+          name: 'user-my',
+          component: () => import('@/pages/user/MyPage.vue'),
+        },
+      ],
     },
     {
       path: '/admin',
