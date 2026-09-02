@@ -26,6 +26,11 @@ const router = createRouter({
       meta: { requiresAuth: true, role: 'USER' },
       children: [
         {
+          path: 'routes',
+          name: 'user-routes',
+          component: () => import('@/pages/user/RouteListPage.vue'),
+        },
+        {
           path: 'my',
           name: 'user-my',
           component: () => import('@/pages/user/MyPage.vue'),
