@@ -17,21 +17,21 @@
     </header>
 
     <div
-      v-if="isLoading"
+      v-if="routeStore.isLoading"
       class="rounded-xl border border-slate-200 bg-white p-6 text-center text-sm text-slate-500"
     >
       노선 정보를 불러오는 중입니다.
     </div>
 
     <div
-      v-else-if="errorMessage"
+      v-else-if="routeStore.errorMessage"
       class="rounded-xl border border-red-100 bg-red-50 p-6 text-sm text-red-600"
     >
-      {{ errorMessage }}
+      {{ routeStore.errorMessage }}
     </div>
 
     <div
-      v-else-if="!routes.length"
+      v-else-if="!visibleRoutes.length"
       class="rounded-xl border border-slate-200 bg-white p-6 text-sm text-slate-500"
     >
       검색된 노선이 없습니다.
@@ -39,7 +39,7 @@
 
     <div v-else class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
       <RouterLink
-        v-for="route in routes"
+        v-for="route in visibleRoutes"
         :key="route.routeId"
         :to="{
           name: 'user-route-detail',
@@ -76,9 +76,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 
-import type { RouteList } from '@/types'
+import type { RouteList, RouteSearch } from '@/types'
 
 import { useRouteStore } from '@/stores/route'
 
@@ -91,9 +91,6 @@ interface RouteView extends RouteList {
   departureTime: string
 }
 
-const routes = ref<RouteView[]>([])
-const isLoading = ref(false)
-const errorMessage = ref('')
 const searchKeyword = ref('')
 const searchInputRef = ref<HTMLInputElement | null>(null)
 
@@ -102,44 +99,43 @@ const formatDepartureTime = (times: string[]) => {
   return times.length > 3 ? `${times[0]} ~ ${times.at(-1)}` : times.join(' / ')
 }
 
+watch(searchKeyword, () => {
+  searchRoutes() // debounce 적용
+})
+
 const searchRoutes = () => {
-  // 노선 검색
+  const params: RouteSearch = {
+    keyword: searchKeyword.value,
+  }
+  routeStore.fetchRoutes(params)
 }
 
 const handleSearchInput = (event: Event) => {
   const inputEl = event.target as HTMLInputElement
   searchKeyword.value = inputEl.value
-  searchRoutes() // debounce 적용 예정
 }
 
 const focusSearchInput = () => {
   searchInputRef.value?.focus()
 }
 
+const visibleRoutes = computed<RouteView[]>(() =>
+  routeStore.routes.map((route) => {
+    const [busCode, busNumber, operationType] = route.routeName.split(/(\d+)/)
+
+    return {
+      ...route,
+      busCode,
+      busNumber,
+      operationType,
+      departureTime: formatDepartureTime(route.departureTimes) || '',
+    }
+  }),
+)
+
 const loadRoutes = async () => {
-  isLoading.value = true
-  errorMessage.value = ''
-
-  try {
-    await routeStore.fetchRoutes()
-    routes.value = routeStore.routes.map((route) => {
-      const [busCode, busNumber, operationType] = route.routeName.split(/(\d+)/)
-
-      return {
-        ...route,
-        busCode,
-        busNumber,
-        operationType,
-        departureTime: formatDepartureTime(route.departureTimes) || '',
-      }
-    })
-
-    focusSearchInput()
-  } catch (error) {
-    errorMessage.value = error instanceof Error ? error.message : '노선을 불러오지 못했습니다.'
-  } finally {
-    isLoading.value = false
-  }
+  await routeStore.fetchRoutes()
+  focusSearchInput()
 }
 
 onMounted(loadRoutes)

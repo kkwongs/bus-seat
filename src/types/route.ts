@@ -17,3 +17,7 @@ export interface RouteList {
   endStopName: string
   departureTimes: string[]
 }
+
+export interface RouteSearch {
+  keyword?: string
+}
