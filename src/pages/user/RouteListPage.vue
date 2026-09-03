@@ -82,6 +82,8 @@ import type { RouteList, RouteSearch } from '@/types'
 
 import { useRouteStore } from '@/stores/route'
 
+import { useDebounce } from '@/composables'
+
 const routeStore = useRouteStore()
 
 interface RouteView extends RouteList {
@@ -94,13 +96,15 @@ interface RouteView extends RouteList {
 const searchKeyword = ref('')
 const searchInputRef = ref<HTMLInputElement | null>(null)
 
+const debouncedKeyword = useDebounce(searchKeyword)
+
 const formatDepartureTime = (times: string[]) => {
   if (!times) return
   return times.length > 3 ? `${times[0]} ~ ${times.at(-1)}` : times.join(' / ')
 }
 
-watch(searchKeyword, () => {
-  searchRoutes() // debounce 적용
+watch(debouncedKeyword, () => {
+  searchRoutes()
 })
 
 const searchRoutes = () => {

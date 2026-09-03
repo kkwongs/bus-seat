@@ -50,12 +50,10 @@
         </button>
       </form>
 
-      <div class="mt-6 border-t border-slate-100 pt-6 text-center text-xs text-slate-400">
+      <div class="mt-6 space-y-1 border-t border-slate-100 pt-6 text-center text-xs text-slate-400">
         <p>테스트 계정</p>
-
-        <p class="mt-1">user@example.com / password123!</p>
-
-        <p>admin@example.com / admin1234@</p>
+        <p>user@example.com / password123!</p>
+        <!-- <p>admin@example.com / admin1234@</p> -->
       </div>
     </section>
   </main>
