@@ -1,7 +1,7 @@
 import { routes } from '@/mocks/data'
 import { mockDelay } from '.'
 
-import type { RouteList, RouteSearch, ApiListResponse } from '@/types'
+import type { RouteList, RouteSearch, Route, ApiListResponse, ApiResponse } from '@/types'
 
 export const getMockRoutes = async (params: RouteSearch): Promise<ApiListResponse<RouteList>> => {
   await mockDelay()
@@ -24,6 +24,21 @@ export const getMockRoutes = async (params: RouteSearch): Promise<ApiListRespons
         }),
       ),
     },
+    status: 200,
+  }
+}
+
+export const getMockRoute = async (routeId: string): Promise<ApiResponse<Route | null>> => {
+  await mockDelay(100)
+
+  const filteredRoute = routes.find((route) => route.routeId === Number(routeId))
+
+  if (!filteredRoute) {
+    return { data: null, status: 404 }
+  }
+
+  return {
+    data: filteredRoute,
     status: 200,
   }
 }

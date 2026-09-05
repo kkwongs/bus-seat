@@ -1,14 +1,18 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import * as routeApi from '@/services/api/route'
 
-import type { RouteList, RouteSearch } from '@/types'
+import type { Route, RouteList, RouteSearch } from '@/types'
 
 export const useRouteStore = defineStore('route', () => {
   const isLoading = ref<boolean>(false)
   const errorMessage = ref<string>('')
   const routes = ref<RouteList[]>([])
+  const route = ref<Route | null>(null)
+
+  const startStopName = computed(() => route.value.stops[0].stopName)
+  const endStopName = computed(() => route.value.stops.at(-1).stopName)
 
   const fetchRoutes = async (params: RouteSearch = {}) => {
     isLoading.value = true
@@ -19,11 +23,36 @@ export const useRouteStore = defineStore('route', () => {
 
       routes.value = data.items
     } catch (error) {
-      errorMessage.value = error instanceof Error ? error.message : '즐겨찾기 삭제에 실패했습니다.'
+      errorMessage.value = error instanceof Error ? error.message : '노선 조회에 실패했습니다.'
     } finally {
       isLoading.value = false
     }
   }
 
-  return { isLoading, errorMessage, routes, fetchRoutes }
+  const fetchRoute = async (routeId: string) => {
+    try {
+      const { data } = await routeApi.getRoute(routeId)
+      route.value = data
+    } catch (error) {
+      errorMessage.value = error instanceof Error ? error.message : '노선 조회에 실패했습니다.'
+    } finally {
+      isLoading.value = false
+    }
+  }
+
+  const $reset = () => {
+    route.value = null
+  }
+
+  return {
+    isLoading,
+    errorMessage,
+    routes,
+    route,
+    startStopName,
+    endStopName,
+    fetchRoutes,
+    fetchRoute,
+    $reset,
+  }
 })

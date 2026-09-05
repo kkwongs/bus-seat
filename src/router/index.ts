@@ -31,6 +31,12 @@ const router = createRouter({
           component: () => import('@/pages/user/RouteListPage.vue'),
         },
         {
+          path: 'routes/:routeId',
+          name: 'user-route-detail',
+          component: () => import('@/pages/user/RouteDetailPage.vue'),
+          props: (route) => ({ routeId: route.params.routeId }),
+        },
+        {
           path: 'my',
           name: 'user-my',
           component: () => import('@/pages/user/MyPage.vue'),

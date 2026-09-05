@@ -7,6 +7,8 @@ export interface Route {
   endStopName: string
   departureTimes: string[]
   fare: number
+  boardingEndSequence: number
+  alightingStartSequence: number
   stops: BusStop[]
 }
 
