@@ -19,8 +19,14 @@
       </div>
 
       <button
-        v-if="stop.stopNumber"
+        v-if="isStopLabelVisible"
         class="rounded-2xl border border-slate-300 px-3 py-1 text-sm text-slate-300"
+        :class="{
+          'border-slate-600 font-medium text-slate-600': isBoarding
+            ? routeStore.selectedStartStop
+            : routeStore.selectedEndStop,
+        }"
+        @click="selectStop"
       >
         {{ isBoarding ? '승차' : '하차' }}
       </button>
@@ -50,7 +56,41 @@ defineExpose({
 
 const routeStore = useRouteStore()
 
-const isBoarding = computed(() => routeStore.route?.boardingEndSequence >= props.stop.stopSequence)
+const isBoarding = computed(() => {
+  const boardingEndSequence = routeStore.route?.boardingEndSequence
+
+  if (boardingEndSequence === undefined) {
+    return false
+  }
+
+  return boardingEndSequence >= props.stop.stopSequence
+})
+
+const isStopLabelVisible = computed(() => {
+  if (!props.stop.stopNumber) {
+    return false
+  }
+
+  const selectedStop = isBoarding.value ? routeStore.selectedStartStop : routeStore.selectedEndStop
+
+  if (!selectedStop) {
+    return true
+  }
+
+  return selectedStop.stopId === props.stop.stopId
+})
+
+const selectStop = () => {
+  if (!isBoarding.value && !routeStore.selectedStartStop) {
+    return
+  }
+
+  if (isBoarding.value) {
+    routeStore.selectedStartStop = props.stop
+  } else {
+    routeStore.selectedEndStop = props.stop
+  }
+}
 </script>
 
 <style scoped></style>

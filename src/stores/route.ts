@@ -10,9 +10,19 @@ export const useRouteStore = defineStore('route', () => {
   const errorMessage = ref<string>('')
   const routes = ref<RouteList[]>([])
   const route = ref<Route | null>(null)
+  const selectedStartStop = ref()
+  const selectedEndStop = ref()
 
-  const startStopName = computed(() => route.value.stops[0].stopName)
-  const endStopName = computed(() => route.value.stops.at(-1).stopName)
+  const startStopName = computed(() => {
+    if (!route.value) {
+      return
+    }
+
+    return route.value.stops[0].stopName
+  })
+  const endStopName = computed(() => {
+    return route.value?.stops.at(-1)?.stopName
+  })
 
   const fetchRoutes = async (params: RouteSearch = {}) => {
     isLoading.value = true
@@ -51,6 +61,8 @@ export const useRouteStore = defineStore('route', () => {
     route,
     startStopName,
     endStopName,
+    selectedStartStop,
+    selectedEndStop,
     fetchRoutes,
     fetchRoute,
     $reset,
