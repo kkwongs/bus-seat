@@ -52,6 +52,8 @@ export const useRouteStore = defineStore('route', () => {
 
   const $reset = () => {
     route.value = null
+    selectedStartStop.value = undefined
+    selectedEndStop.value = undefined
   }
 
   return {

@@ -51,10 +51,11 @@
         <div>
           <div class="flex justify-between py-4">
             <div class="inline-flex items-center gap-x-1">
-              <span class="font-medium">출발지를 선택하세요</span>
+              <span class="font-medium">{{ tarvelTimeMessage }}</span>
               <button
-                v-if="seletedStartStop"
+                v-if="routeStore.selectedStartStop"
                 class="rounded border border-sky-600 px-1.5 py-0.5 text-sm text-sky-600"
+                @click="resetSelectedStop"
               >
                 정류장 재선택
               </button>
@@ -75,12 +76,14 @@
               class="absolute top-5.5 left-1.5 border border-slate-200"
               :style="{ height: `calc(100% - ${routeStopRefHeight}px)` }"
             ></div>
+
             <ul class="relative">
               <RouteStop
                 v-for="stop in routeStore.route.stops"
                 :key="stop.stopId"
                 ref="routeStopRef"
                 :stop="stop"
+                @select-start-stop="moveToFirstAlighting"
               />
             </ul>
           </div>
@@ -114,7 +117,33 @@ const routeStore = useRouteStore()
 
 const routeStopRef = ref<InstanceType<typeof RouteStop>[]>([])
 const routeStopRefHeight = ref(0)
-const seletedStartStop = ref(null)
+
+const tarvelTimeMessage = computed(() => {
+  if (!routeStore.selectedStartStop) {
+    return '출발지를 선택하세요'
+  }
+
+  if (!routeStore.selectedEndStop) {
+    return '도착지를 선택하세요'
+  }
+
+  return `소요시간 ${1}시간 ${19}분`
+})
+
+const resetSelectedStop = () => {
+  routeStore.selectedStartStop = undefined
+  routeStore.selectedEndStop = undefined
+}
+
+const moveToFirstAlighting = () => {
+  if (!routeStore?.route) return
+
+  const firstAlightingStop = routeStopRef.value[routeStore.route.alightingStartSequence].root
+
+  if (!firstAlightingStop) return
+
+  firstAlightingStop.scrollIntoView({ behavior: 'smooth', block: 'center' })
+}
 
 const fetchRoute = async () => {
   await routeStore.fetchRoute(props.routeId)

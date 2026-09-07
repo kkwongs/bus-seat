@@ -20,12 +20,8 @@
 
       <button
         v-if="isStopLabelVisible"
-        class="rounded-2xl border border-slate-300 px-3 py-1 text-sm text-slate-300"
-        :class="{
-          'border-slate-600 font-medium text-slate-600': isBoarding
-            ? routeStore.selectedStartStop
-            : routeStore.selectedEndStop,
-        }"
+        class="rounded-2xl border px-3 py-1 text-sm"
+        :class="boardingAlightingClass"
         @click="selectStop"
       >
         {{ isBoarding ? '승차' : '하차' }}
@@ -48,6 +44,8 @@ const props = defineProps<{
   stop: BusStop
 }>()
 
+const emit = defineEmits(['selectStartStop'])
+
 const root = ref<HTMLElement | null>(null)
 
 defineExpose({
@@ -55,6 +53,17 @@ defineExpose({
 })
 
 const routeStore = useRouteStore()
+
+const boardingAlightingClass = computed(() => {
+  if (
+    props.stop.stopId === routeStore.selectedStartStop?.stopId ||
+    props.stop.stopId === routeStore.selectedEndStop?.stopId
+  ) {
+    return ['border-sky-600 bg-sky-600 font-medium text-white']
+  } else {
+    return ['border-slate-300 text-slate-300']
+  }
+})
 
 const isBoarding = computed(() => {
   const boardingEndSequence = routeStore.route?.boardingEndSequence
@@ -81,15 +90,28 @@ const isStopLabelVisible = computed(() => {
 })
 
 const selectStop = () => {
-  if (!isBoarding.value && !routeStore.selectedStartStop) {
+  if (!isBoarding.value) {
+    if (!routeStore.selectedStartStop) {
+      return
+    }
+
+    if (routeStore.selectedEndStop) {
+      routeStore.selectedEndStop = undefined
+    } else {
+      routeStore.selectedEndStop = props.stop
+    }
+
     return
   }
 
-  if (isBoarding.value) {
-    routeStore.selectedStartStop = props.stop
-  } else {
-    routeStore.selectedEndStop = props.stop
+  if (routeStore.selectedStartStop) {
+    routeStore.selectedStartStop = undefined
+    routeStore.selectedEndStop = undefined
+    return
   }
+
+  routeStore.selectedStartStop = props.stop
+  emit('selectStartStop')
 }
 </script>
 
