@@ -50,7 +50,7 @@
 
         <div>
           <div class="flex justify-between py-4">
-            <div class="inline-flex items-center gap-x-1">
+            <div class="inline-flex flex-1 flex-wrap items-center gap-1">
               <span class="font-medium">{{ tarvelTimeMessage }}</span>
               <button
                 v-if="routeStore.selectedStartStop"
@@ -62,9 +62,10 @@
             </div>
 
             <div class="inline-flex items-center gap-x-1">
-              <span class="inline-flex items-center text-sm"
-                ><ExclamationCircle class="text-slate-400" />운행시간 안내</span
-              >
+              <span class="inline-flex items-center text-sm">
+                <ExclamationCircle class="text-slate-400" />
+                <span>운행시간 안내</span>
+              </span>
               <button class="rounded border border-slate-400 p-1">
                 <Refresh class="text-slate-600" :size="16" />
               </button>
@@ -86,6 +87,18 @@
                 @select-start-stop="moveToFirstAlighting"
               />
             </ul>
+
+            <div
+              v-if="routeStore.selectedStartStop"
+              class="absolute right-6.5"
+              :class="{
+                'rounded-full border border-sky-600': routeStore.selectedStartStop,
+                'transition-[height] duration-300': routeStore.selectedEndStop,
+              }"
+              :style="{ top: routeLineTop, height: routeLineHeight }"
+            >
+              <ChevronDown class="absolute -bottom-2.5 -translate-x-1/2 text-sky-600" :size="24" />
+            </div>
           </div>
 
           <p class="py-5 text-sm text-slate-600">
@@ -104,6 +117,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import ArrowRight from '@primeicons/vue/arrow-right'
 import ExclamationCircle from '@primeicons/vue/exclamation-circle'
 import Refresh from '@primeicons/vue/refresh'
+import ChevronDown from '@primeicons/vue/chevron-down'
 
 import RouteStop from '@/components/RouteStop.vue'
 
@@ -117,6 +131,28 @@ const routeStore = useRouteStore()
 
 const routeStopRef = ref<InstanceType<typeof RouteStop>[]>([])
 const routeStopRefHeight = ref(0)
+
+const routeLineTop = computed(() => {
+  if (routeStore.selectedStartStop) {
+    return `${54 + routeStopRefHeight.value * (routeStore.selectedStartStop.stopSequence - 1)}px`
+  }
+
+  return '54px'
+})
+
+const routeLineHeight = computed(() => {
+  if (routeStore.selectedEndStop) {
+    const sequenceGap =
+      routeStore.selectedEndStop.stopSequence - routeStore.selectedStartStop.stopSequence
+    return `${routeStopRefHeight.value * (sequenceGap - 0.5)}px`
+  }
+
+  if (routeStore.selectedStartStop) {
+    return `${routeStopRefHeight.value * ((routeStore.route?.alightingStartSequence || 0) - 0.5 - routeStore.selectedStartStop.stopSequence)}px`
+  }
+
+  return 0
+})
 
 const tarvelTimeMessage = computed(() => {
   if (!routeStore.selectedStartStop) {

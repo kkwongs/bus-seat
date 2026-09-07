@@ -1,11 +1,11 @@
 <template>
-  <div ref="root" class="relative flex gap-x-0.5">
+  <div ref="root" class="relative flex h-18 gap-x-0.5">
     <div class="z-10 inline-flex gap-x-3 pt-4 text-slate-500">
       <ChevronCircleDown :size="14" class="bg-white text-slate-400" /> <MapMarker :size="16" />
     </div>
 
-    <div class="flex flex-1 items-center justify-between border-b border-slate-300 py-3">
-      <div class="space-y-1">
+    <div class="flex flex-1 items-center justify-between gap-1 border-b border-slate-300 py-3">
+      <div class="flex-1 space-y-1">
         <p :class="{ 'text-slate-300': !stop.stopNumber }">{{ stop.stopName }}</p>
         <div class="flex gap-x-2 text-sm text-slate-600">
           <span :class="{ 'text-slate-300': !stop.stopNumber }">
