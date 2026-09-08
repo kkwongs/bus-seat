@@ -32,11 +32,19 @@
           >
             <div>
               <span class="text-slate-600">금액</span>
-              <span>{{ routeStore.route.fare }}원</span>
+              <span>{{ routeStore.route.fare.toLocaleString('ko-KR') }}원</span>
             </div>
             <div>
               <span class="text-slate-600">기점출발</span>
-              <span>{{ seletedDepartureTime }}</span>
+              <div class="flex items-center justify-between">
+                <span>{{ selectedDepartureTime }}</span>
+                <button
+                  class="inline-flex rounded-xl py-0.5 pl-1.5 text-sm font-medium text-sky-600"
+                  @click="isModalOpen = true"
+                >
+                  변경 <ChevronRight />
+                </button>
+              </div>
             </div>
             <div>
               <span class="text-slate-600">예약가능 시간</span>
@@ -109,17 +117,25 @@
       </template>
     </div>
   </div>
+
+  <DepartureTimeChangeModal
+    v-if="isModalOpen"
+    :selected-departure-time="selectedDepartureTime"
+    @change-time="changeTime"
+  />
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 import ArrowRight from '@primeicons/vue/arrow-right'
 import ExclamationCircle from '@primeicons/vue/exclamation-circle'
 import Refresh from '@primeicons/vue/refresh'
 import ChevronDown from '@primeicons/vue/chevron-down'
+import ChevronRight from '@primeicons/vue/chevron-right'
 
 import RouteStop from '@/components/RouteStop.vue'
+import DepartureTimeChangeModal from '@/components/DepartureTimeChangeModal.vue'
 
 import { useRouteStore } from '@/stores/route'
 
@@ -131,6 +147,8 @@ const routeStore = useRouteStore()
 
 const routeStopRef = ref<InstanceType<typeof RouteStop>[]>([])
 const routeStopRefHeight = ref(0)
+const isModalOpen = ref(false)
+const selectedDepartureTime = ref<string | undefined>('')
 
 const routeLineTop = computed(() => {
   if (routeStore.selectedStartStop) {
@@ -166,6 +184,15 @@ const tarvelTimeMessage = computed(() => {
   return `소요시간 ${1}시간 ${19}분`
 })
 
+watch(isModalOpen, (value) => {
+  document.body.style.overflow = value ? 'hidden' : ''
+})
+
+const changeTime = (time: string) => {
+  selectedDepartureTime.value = time
+  isModalOpen.value = false
+}
+
 const resetSelectedStop = () => {
   routeStore.selectedStartStop = undefined
   routeStore.selectedEndStop = undefined
@@ -187,11 +214,9 @@ const fetchRoute = async () => {
   if (routeStopRef.value[0].root) {
     routeStopRefHeight.value = routeStopRef.value[0].root.getBoundingClientRect().height
   }
-}
 
-const seletedDepartureTime = computed(() => {
-  return routeStore.route?.departureTimes[0]
-})
+  selectedDepartureTime.value = routeStore.route?.departureTimes[0]
+}
 
 onMounted(fetchRoute)
 onBeforeUnmount(routeStore.$reset)
