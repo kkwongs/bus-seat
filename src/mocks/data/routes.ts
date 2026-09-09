@@ -24,6 +24,9 @@ export const routes: Route[] = [
         stopSequence: 1,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:40',
+        },
       },
       {
         centerYn: 'N',
@@ -38,6 +41,9 @@ export const routes: Route[] = [
         stopSequence: 2,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:42',
+        },
       },
       {
         centerYn: 'N',
@@ -52,6 +58,9 @@ export const routes: Route[] = [
         stopSequence: 3,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:44',
+        },
       },
       {
         centerYn: 'N',
@@ -66,6 +75,9 @@ export const routes: Route[] = [
         stopSequence: 4,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:46',
+        },
       },
       {
         centerYn: 'N',
@@ -80,6 +92,9 @@ export const routes: Route[] = [
         stopSequence: 5,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:48',
+        },
       },
       {
         centerYn: 'N',
@@ -94,6 +109,9 @@ export const routes: Route[] = [
         stopSequence: 6,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:50',
+        },
       },
       {
         centerYn: 'N',
@@ -108,6 +126,9 @@ export const routes: Route[] = [
         stopSequence: 7,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:52',
+        },
       },
       {
         centerYn: 'N',
@@ -122,6 +143,9 @@ export const routes: Route[] = [
         stopSequence: 8,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:54',
+        },
       },
       {
         centerYn: 'N',
@@ -136,6 +160,9 @@ export const routes: Route[] = [
         stopSequence: 9,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:57',
+        },
       },
       {
         centerYn: 'N',
@@ -150,6 +177,9 @@ export const routes: Route[] = [
         stopSequence: 10,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:59',
+        },
       },
       {
         centerYn: 'N',
@@ -164,6 +194,9 @@ export const routes: Route[] = [
         stopSequence: 11,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:01',
+        },
       },
       {
         centerYn: 'N',
@@ -178,6 +211,9 @@ export const routes: Route[] = [
         stopSequence: 12,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:03',
+        },
       },
       {
         centerYn: 'N',
@@ -192,6 +228,9 @@ export const routes: Route[] = [
         stopSequence: 13,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:05',
+        },
       },
       {
         centerYn: 'N',
@@ -206,6 +245,9 @@ export const routes: Route[] = [
         stopSequence: 14,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:07',
+        },
       },
       {
         centerYn: 'N',
@@ -220,6 +262,9 @@ export const routes: Route[] = [
         stopSequence: 15,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:09',
+        },
       },
       {
         centerYn: 'N',
@@ -234,6 +279,9 @@ export const routes: Route[] = [
         stopSequence: 16,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:11',
+        },
       },
       {
         centerYn: 'N',
@@ -248,6 +296,9 @@ export const routes: Route[] = [
         stopSequence: 17,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:13',
+        },
       },
       {
         centerYn: 'N',
@@ -262,6 +313,9 @@ export const routes: Route[] = [
         stopSequence: 18,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:15',
+        },
       },
       {
         centerYn: 'N',
@@ -276,6 +330,9 @@ export const routes: Route[] = [
         stopSequence: 19,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:17',
+        },
       },
       {
         centerYn: 'N',
@@ -290,6 +347,9 @@ export const routes: Route[] = [
         stopSequence: 20,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:19',
+        },
       },
       {
         centerYn: 'N',
@@ -304,6 +364,9 @@ export const routes: Route[] = [
         stopSequence: 21,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:21',
+        },
       },
       {
         centerYn: 'N',
@@ -344,6 +407,9 @@ export const routes: Route[] = [
         stopSequence: 24,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:23',
+        },
       },
       {
         centerYn: 'N',
@@ -358,6 +424,9 @@ export const routes: Route[] = [
         stopSequence: 25,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:25',
+        },
       },
       {
         centerYn: 'N',
@@ -372,6 +441,9 @@ export const routes: Route[] = [
         stopSequence: 26,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:27',
+        },
       },
       {
         centerYn: 'N',
@@ -386,6 +458,9 @@ export const routes: Route[] = [
         stopSequence: 27,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:30',
+        },
       },
       {
         centerYn: 'N',
@@ -400,6 +475,9 @@ export const routes: Route[] = [
         stopSequence: 28,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:32',
+        },
       },
       {
         centerYn: 'N',
@@ -414,6 +492,9 @@ export const routes: Route[] = [
         stopSequence: 29,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:34',
+        },
       },
       {
         centerYn: 'N',
@@ -428,6 +509,9 @@ export const routes: Route[] = [
         stopSequence: 30,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:36',
+        },
       },
       {
         centerYn: 'N',
@@ -442,6 +526,9 @@ export const routes: Route[] = [
         stopSequence: 31,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:38',
+        },
       },
       {
         centerYn: 'N',
@@ -456,6 +543,9 @@ export const routes: Route[] = [
         stopSequence: 32,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:40',
+        },
       },
       {
         centerYn: 'N',
@@ -470,6 +560,9 @@ export const routes: Route[] = [
         stopSequence: 33,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:42',
+        },
       },
       {
         centerYn: 'N',
@@ -484,6 +577,9 @@ export const routes: Route[] = [
         stopSequence: 34,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:44',
+        },
       },
       {
         centerYn: 'N',
@@ -498,6 +594,9 @@ export const routes: Route[] = [
         stopSequence: 35,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:46',
+        },
       },
       {
         centerYn: 'N',
@@ -512,6 +611,9 @@ export const routes: Route[] = [
         stopSequence: 36,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:48',
+        },
       },
       {
         centerYn: 'N',
@@ -526,6 +628,9 @@ export const routes: Route[] = [
         stopSequence: 37,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:50',
+        },
       },
       {
         centerYn: 'N',
@@ -540,6 +645,9 @@ export const routes: Route[] = [
         stopSequence: 38,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:52',
+        },
       },
       {
         centerYn: 'N',
@@ -554,6 +662,9 @@ export const routes: Route[] = [
         stopSequence: 39,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:54',
+        },
       },
       {
         centerYn: 'N',
@@ -568,6 +679,9 @@ export const routes: Route[] = [
         stopSequence: 40,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:56',
+        },
       },
       {
         centerYn: 'N',
@@ -673,6 +787,9 @@ export const routes: Route[] = [
         stopSequence: 48,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:58',
+        },
       },
       {
         centerYn: 'N',
@@ -687,6 +804,9 @@ export const routes: Route[] = [
         stopSequence: 49,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:00',
+        },
       },
       {
         centerYn: 'N',
@@ -701,6 +821,9 @@ export const routes: Route[] = [
         stopSequence: 50,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:03',
+        },
       },
       {
         centerYn: 'N',
@@ -715,6 +838,9 @@ export const routes: Route[] = [
         stopSequence: 51,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:05',
+        },
       },
       {
         centerYn: 'N',
@@ -729,6 +855,9 @@ export const routes: Route[] = [
         stopSequence: 52,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:07',
+        },
       },
       {
         centerYn: 'N',
@@ -743,6 +872,9 @@ export const routes: Route[] = [
         stopSequence: 53,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:09',
+        },
       },
       {
         centerYn: 'N',
@@ -757,6 +889,9 @@ export const routes: Route[] = [
         stopSequence: 54,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:11',
+        },
       },
       {
         centerYn: 'N',
@@ -771,6 +906,9 @@ export const routes: Route[] = [
         stopSequence: 55,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:13',
+        },
       },
       {
         centerYn: 'N',
@@ -785,6 +923,9 @@ export const routes: Route[] = [
         stopSequence: 56,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:15',
+        },
       },
       {
         centerYn: 'N',
@@ -799,6 +940,9 @@ export const routes: Route[] = [
         stopSequence: 57,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:17',
+        },
       },
       {
         centerYn: 'N',
@@ -813,6 +957,9 @@ export const routes: Route[] = [
         stopSequence: 58,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:19',
+        },
       },
       {
         centerYn: 'N',
@@ -827,6 +974,9 @@ export const routes: Route[] = [
         stopSequence: 59,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:21',
+        },
       },
       {
         centerYn: 'N',
@@ -841,6 +991,9 @@ export const routes: Route[] = [
         stopSequence: 60,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:23',
+        },
       },
       {
         centerYn: 'N',
@@ -855,6 +1008,9 @@ export const routes: Route[] = [
         stopSequence: 61,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:25',
+        },
       },
       {
         centerYn: 'N',
@@ -869,6 +1025,9 @@ export const routes: Route[] = [
         stopSequence: 62,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:27',
+        },
       },
       {
         centerYn: 'N',
@@ -883,6 +1042,9 @@ export const routes: Route[] = [
         stopSequence: 63,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:29',
+        },
       },
       {
         centerYn: 'N',
@@ -897,6 +1059,9 @@ export const routes: Route[] = [
         stopSequence: 64,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:31',
+        },
       },
       {
         centerYn: 'N',
@@ -911,6 +1076,9 @@ export const routes: Route[] = [
         stopSequence: 65,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:33',
+        },
       },
       {
         centerYn: 'N',
@@ -925,6 +1093,9 @@ export const routes: Route[] = [
         stopSequence: 66,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:36',
+        },
       },
       {
         centerYn: 'N',
@@ -939,6 +1110,9 @@ export const routes: Route[] = [
         stopSequence: 67,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:38',
+        },
       },
       {
         centerYn: 'N',
@@ -953,6 +1127,9 @@ export const routes: Route[] = [
         stopSequence: 68,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:40',
+        },
       },
       {
         centerYn: 'Y',
@@ -967,6 +1144,9 @@ export const routes: Route[] = [
         stopSequence: 69,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:42',
+        },
       },
       {
         centerYn: 'Y',
@@ -981,6 +1161,9 @@ export const routes: Route[] = [
         stopSequence: 70,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:44',
+        },
       },
       {
         centerYn: 'Y',
@@ -995,6 +1178,9 @@ export const routes: Route[] = [
         stopSequence: 71,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:46',
+        },
       },
       {
         centerYn: 'Y',
@@ -1009,6 +1195,9 @@ export const routes: Route[] = [
         stopSequence: 72,
         turnSeq: 73,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:48',
+        },
       },
       {
         centerYn: 'N',
@@ -1023,6 +1212,9 @@ export const routes: Route[] = [
         stopSequence: 73,
         turnSeq: 73,
         turnYn: 'Y',
+        arrivalTime: {
+          '06:40': '08:50',
+        },
       },
     ],
   },
@@ -1049,6 +1241,10 @@ export const routes: Route[] = [
         stopSequence: 1,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '06:46',
+          '07:15': '07:15',
+        },
       },
       {
         centerYn: 'N',
@@ -1063,6 +1259,10 @@ export const routes: Route[] = [
         stopSequence: 2,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '06:50',
+          '07:15': '07:19',
+        },
       },
       {
         centerYn: 'N',
@@ -1077,6 +1277,10 @@ export const routes: Route[] = [
         stopSequence: 3,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '06:54',
+          '07:15': '07:23',
+        },
       },
       {
         centerYn: 'N',
@@ -1091,6 +1295,10 @@ export const routes: Route[] = [
         stopSequence: 4,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '06:57',
+          '07:15': '07:26',
+        },
       },
       {
         centerYn: 'N',
@@ -1105,6 +1313,10 @@ export const routes: Route[] = [
         stopSequence: 5,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:01',
+          '07:15': '07:30',
+        },
       },
       {
         centerYn: 'N',
@@ -1119,6 +1331,10 @@ export const routes: Route[] = [
         stopSequence: 6,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:05',
+          '07:15': '07:34',
+        },
       },
       {
         centerYn: 'N',
@@ -1133,6 +1349,10 @@ export const routes: Route[] = [
         stopSequence: 7,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:09',
+          '07:15': '07:38',
+        },
       },
       {
         centerYn: 'N',
@@ -1147,6 +1367,10 @@ export const routes: Route[] = [
         stopSequence: 8,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:12',
+          '07:15': '07:41',
+        },
       },
       {
         centerYn: 'N',
@@ -1161,6 +1385,10 @@ export const routes: Route[] = [
         stopSequence: 9,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:16',
+          '07:15': '07:45',
+        },
       },
       {
         centerYn: 'N',
@@ -1175,6 +1403,10 @@ export const routes: Route[] = [
         stopSequence: 10,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:20',
+          '07:15': '07:49',
+        },
       },
       {
         centerYn: 'N',
@@ -1189,6 +1421,10 @@ export const routes: Route[] = [
         stopSequence: 11,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:24',
+          '07:15': '07:53',
+        },
       },
       {
         centerYn: 'N',
@@ -1203,6 +1439,10 @@ export const routes: Route[] = [
         stopSequence: 12,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:27',
+          '07:15': '07:56',
+        },
       },
       {
         centerYn: 'N',
@@ -1217,6 +1457,10 @@ export const routes: Route[] = [
         stopSequence: 13,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:31',
+          '07:15': '08:00',
+        },
       },
       {
         centerYn: 'N',
@@ -1231,6 +1475,10 @@ export const routes: Route[] = [
         stopSequence: 14,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:35',
+          '07:15': '08:04',
+        },
       },
       {
         centerYn: 'N',
@@ -1336,6 +1584,10 @@ export const routes: Route[] = [
         stopSequence: 22,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:39',
+          '07:15': '08:08',
+        },
       },
       {
         centerYn: 'N',
@@ -1363,6 +1615,10 @@ export const routes: Route[] = [
         stopSequence: 24,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:42',
+          '07:15': '08:11',
+        },
       },
       {
         centerYn: 'Y',
@@ -1377,6 +1633,10 @@ export const routes: Route[] = [
         stopSequence: 25,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:46',
+          '07:15': '08:15',
+        },
       },
       {
         centerYn: 'Y',
@@ -1391,6 +1651,10 @@ export const routes: Route[] = [
         stopSequence: 26,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:50',
+          '07:15': '08:19',
+        },
       },
       {
         centerYn: 'Y',
@@ -1405,6 +1669,10 @@ export const routes: Route[] = [
         stopSequence: 27,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:54',
+          '07:15': '08:23',
+        },
       },
       {
         centerYn: 'Y',
@@ -1419,6 +1687,10 @@ export const routes: Route[] = [
         stopSequence: 28,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '07:57',
+          '07:15': '08:26',
+        },
       },
       {
         centerYn: 'Y',
@@ -1433,6 +1705,10 @@ export const routes: Route[] = [
         stopSequence: 29,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '08:01',
+          '07:15': '08:30',
+        },
       },
       {
         centerYn: 'Y',
@@ -1447,6 +1723,10 @@ export const routes: Route[] = [
         stopSequence: 30,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '08:05',
+          '07:15': '08:34',
+        },
       },
       {
         centerYn: 'Y',
@@ -1461,6 +1741,10 @@ export const routes: Route[] = [
         stopSequence: 31,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '08:09',
+          '07:15': '08:38',
+        },
       },
       {
         centerYn: 'N',
@@ -1475,6 +1759,10 @@ export const routes: Route[] = [
         stopSequence: 32,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '08:12',
+          '07:15': '08:41',
+        },
       },
       {
         centerYn: 'N',
@@ -1489,6 +1777,10 @@ export const routes: Route[] = [
         stopSequence: 33,
         turnSeq: 34,
         turnYn: 'N',
+        arrivalTime: {
+          '06:46': '08:16',
+          '07:15': '08:45',
+        },
       },
       {
         centerYn: 'N',
@@ -1503,6 +1795,10 @@ export const routes: Route[] = [
         stopSequence: 34,
         turnSeq: 34,
         turnYn: 'Y',
+        arrivalTime: {
+          '06:46': '08:20',
+          '07:15': '08:49',
+        },
       },
     ],
   },
@@ -1529,6 +1825,11 @@ export const routes: Route[] = [
         stopSequence: 1,
         turnSeq: 21,
         turnYn: 'N',
+        arrivalTime: {
+          '06:25': '06:25',
+          '06:41': '06:41',
+          '07:23': '07:23',
+        },
       },
       {
         centerYn: 'N',
@@ -1569,6 +1870,11 @@ export const routes: Route[] = [
         stopSequence: 4,
         turnSeq: 21,
         turnYn: 'N',
+        arrivalTime: {
+          '06:25': '06:35',
+          '06:41': '06:51',
+          '07:23': '07:33',
+        },
       },
       {
         centerYn: 'N',
@@ -1596,6 +1902,11 @@ export const routes: Route[] = [
         stopSequence: 6,
         turnSeq: 21,
         turnYn: 'N',
+        arrivalTime: {
+          '06:25': '06:44',
+          '06:41': '07:00',
+          '07:23': '07:42',
+        },
       },
       {
         centerYn: 'N',
@@ -1610,6 +1921,11 @@ export const routes: Route[] = [
         stopSequence: 7,
         turnSeq: 21,
         turnYn: 'N',
+        arrivalTime: {
+          '06:25': '06:54',
+          '06:41': '07:10',
+          '07:23': '07:52',
+        },
       },
       {
         centerYn: 'N',
@@ -1624,6 +1940,11 @@ export const routes: Route[] = [
         stopSequence: 8,
         turnSeq: 21,
         turnYn: 'N',
+        arrivalTime: {
+          '06:25': '07:04',
+          '06:41': '07:20',
+          '07:23': '08:02',
+        },
       },
       {
         centerYn: 'N',
@@ -1638,6 +1959,11 @@ export const routes: Route[] = [
         stopSequence: 9,
         turnSeq: 21,
         turnYn: 'N',
+        arrivalTime: {
+          '06:25': '07:14',
+          '06:41': '07:30',
+          '07:23': '08:12',
+        },
       },
       {
         centerYn: 'N',
@@ -1652,6 +1978,11 @@ export const routes: Route[] = [
         stopSequence: 10,
         turnSeq: 21,
         turnYn: 'N',
+        arrivalTime: {
+          '06:25': '07:23',
+          '06:41': '07:39',
+          '07:23': '08:21',
+        },
       },
       {
         centerYn: 'N',
@@ -1796,6 +2127,11 @@ export const routes: Route[] = [
         stopSequence: 21,
         turnSeq: 21,
         turnYn: 'Y',
+        arrivalTime: {
+          '06:25': '07:33',
+          '06:41': '07:49',
+          '07:23': '08:31',
+        },
       },
     ],
   },
@@ -1822,6 +2158,12 @@ export const routes: Route[] = [
         stopSequence: 2,
         turnSeq: 17,
         turnYn: 'N',
+        arrivalTime: {
+          '06:10': '06:10',
+          '06:50': '06:50',
+          '07:05': '07:05',
+          '07:50': '07:50',
+        },
       },
       {
         centerYn: 'N',
@@ -1836,6 +2178,12 @@ export const routes: Route[] = [
         stopSequence: 3,
         turnSeq: 17,
         turnYn: 'N',
+        arrivalTime: {
+          '06:10': '06:16',
+          '06:50': '06:56',
+          '07:05': '07:11',
+          '07:50': '07:56',
+        },
       },
       {
         centerYn: 'N',
@@ -1850,6 +2198,12 @@ export const routes: Route[] = [
         stopSequence: 4,
         turnSeq: 17,
         turnYn: 'N',
+        arrivalTime: {
+          '06:10': '06:23',
+          '06:50': '07:03',
+          '07:05': '07:18',
+          '07:50': '08:03',
+        },
       },
       {
         centerYn: 'N',
@@ -1864,6 +2218,12 @@ export const routes: Route[] = [
         stopSequence: 5,
         turnSeq: 17,
         turnYn: 'N',
+        arrivalTime: {
+          '06:10': '06:29',
+          '06:50': '07:09',
+          '07:05': '07:24',
+          '07:50': '08:09',
+        },
       },
       {
         centerYn: 'N',
@@ -1878,6 +2238,12 @@ export const routes: Route[] = [
         stopSequence: 6,
         turnSeq: 17,
         turnYn: 'N',
+        arrivalTime: {
+          '06:10': '06:35',
+          '06:50': '07:15',
+          '07:05': '07:30',
+          '07:50': '08:15',
+        },
       },
       {
         centerYn: 'N',
@@ -1892,6 +2258,12 @@ export const routes: Route[] = [
         stopSequence: 7,
         turnSeq: 17,
         turnYn: 'N',
+        arrivalTime: {
+          '06:10': '06:41',
+          '06:50': '07:21',
+          '07:05': '07:36',
+          '07:50': '08:21',
+        },
       },
       {
         centerYn: 'N',
@@ -1906,6 +2278,12 @@ export const routes: Route[] = [
         stopSequence: 8,
         turnSeq: 17,
         turnYn: 'N',
+        arrivalTime: {
+          '06:10': '06:48',
+          '06:50': '07:28',
+          '07:05': '07:43',
+          '07:50': '08:28',
+        },
       },
       {
         centerYn: 'N',
@@ -1920,6 +2298,12 @@ export const routes: Route[] = [
         stopSequence: 9,
         turnSeq: 17,
         turnYn: 'N',
+        arrivalTime: {
+          '06:10': '06:54',
+          '06:50': '07:34',
+          '07:05': '07:49',
+          '07:50': '08:34',
+        },
       },
       {
         centerYn: 'N',
@@ -2025,6 +2409,12 @@ export const routes: Route[] = [
         stopSequence: 17,
         turnSeq: 17,
         turnYn: 'Y',
+        arrivalTime: {
+          '06:10': '07:00',
+          '06:50': '07:40',
+          '07:05': '07:55',
+          '07:50': '08:40',
+        },
       },
     ],
   },
@@ -2051,6 +2441,10 @@ export const routes: Route[] = [
         stopSequence: 1,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:40',
+          '06:50': '06:50',
+        },
       },
       {
         centerYn: 'N',
@@ -2065,6 +2459,10 @@ export const routes: Route[] = [
         stopSequence: 2,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:47',
+          '06:50': '06:57',
+        },
       },
       {
         centerYn: 'N',
@@ -2079,6 +2477,10 @@ export const routes: Route[] = [
         stopSequence: 3,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '06:55',
+          '06:50': '07:05',
+        },
       },
       {
         centerYn: 'N',
@@ -2093,6 +2495,10 @@ export const routes: Route[] = [
         stopSequence: 4,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:02',
+          '06:50': '07:12',
+        },
       },
       {
         centerYn: 'N',
@@ -2107,6 +2513,10 @@ export const routes: Route[] = [
         stopSequence: 5,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:09',
+          '06:50': '07:19',
+        },
       },
       {
         centerYn: 'N',
@@ -2121,6 +2531,10 @@ export const routes: Route[] = [
         stopSequence: 6,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:17',
+          '06:50': '07:27',
+        },
       },
       {
         centerYn: 'N',
@@ -2135,6 +2549,10 @@ export const routes: Route[] = [
         stopSequence: 7,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:24',
+          '06:50': '07:34',
+        },
       },
       {
         centerYn: 'N',
@@ -2149,6 +2567,10 @@ export const routes: Route[] = [
         stopSequence: 8,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:31',
+          '06:50': '07:41',
+        },
       },
       {
         centerYn: 'N',
@@ -2319,6 +2741,10 @@ export const routes: Route[] = [
         stopSequence: 21,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:38',
+          '06:50': '07:48',
+        },
       },
       {
         centerYn: 'N',
@@ -2359,6 +2785,10 @@ export const routes: Route[] = [
         stopSequence: 24,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:46',
+          '06:50': '07:56',
+        },
       },
       {
         centerYn: 'N',
@@ -2373,6 +2803,10 @@ export const routes: Route[] = [
         stopSequence: 25,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '07:53',
+          '06:50': '08:03',
+        },
       },
       {
         centerYn: 'N',
@@ -2400,6 +2834,10 @@ export const routes: Route[] = [
         stopSequence: 27,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:00',
+          '06:50': '08:10',
+        },
       },
       {
         centerYn: 'N',
@@ -2427,6 +2865,10 @@ export const routes: Route[] = [
         stopSequence: 29,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '06:40': '08:08',
+          '06:50': '08:18',
+        },
       },
       {
         centerYn: 'N',
@@ -2454,6 +2896,10 @@ export const routes: Route[] = [
         stopSequence: 31,
         turnSeq: 31,
         turnYn: 'Y',
+        arrivalTime: {
+          '06:40': '08:15',
+          '06:50': '08:25',
+        },
       },
     ],
   },
@@ -2909,6 +3355,9 @@ export const routes: Route[] = [
         stopSequence: 1,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '19:30',
+        },
       },
       {
         centerYn: 'N',
@@ -2936,6 +3385,9 @@ export const routes: Route[] = [
         stopSequence: 3,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '19:37',
+        },
       },
       {
         centerYn: 'N',
@@ -2963,6 +3415,9 @@ export const routes: Route[] = [
         stopSequence: 5,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '19:44',
+        },
       },
       {
         centerYn: 'N',
@@ -3003,6 +3458,9 @@ export const routes: Route[] = [
         stopSequence: 8,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '19:51',
+        },
       },
       {
         centerYn: 'N',
@@ -3017,6 +3475,9 @@ export const routes: Route[] = [
         stopSequence: 9,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '19:59',
+        },
       },
       {
         centerYn: 'N',
@@ -3070,6 +3531,9 @@ export const routes: Route[] = [
         stopSequence: 13,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '20:06',
+        },
       },
       {
         centerYn: 'N',
@@ -3214,6 +3678,9 @@ export const routes: Route[] = [
         stopSequence: 24,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '20:13',
+        },
       },
       {
         centerYn: 'N',
@@ -3228,6 +3695,9 @@ export const routes: Route[] = [
         stopSequence: 25,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '20:20',
+        },
       },
       {
         centerYn: 'N',
@@ -3242,6 +3712,9 @@ export const routes: Route[] = [
         stopSequence: 26,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '20:27',
+        },
       },
       {
         centerYn: 'N',
@@ -3256,6 +3729,9 @@ export const routes: Route[] = [
         stopSequence: 27,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '20:34',
+        },
       },
       {
         centerYn: 'N',
@@ -3270,6 +3746,9 @@ export const routes: Route[] = [
         stopSequence: 28,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '20:42',
+        },
       },
       {
         centerYn: 'N',
@@ -3284,6 +3763,9 @@ export const routes: Route[] = [
         stopSequence: 29,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '20:49',
+        },
       },
       {
         centerYn: 'N',
@@ -3298,6 +3780,9 @@ export const routes: Route[] = [
         stopSequence: 30,
         turnSeq: 31,
         turnYn: 'N',
+        arrivalTime: {
+          '19:30': '20:56',
+        },
       },
       {
         centerYn: 'N',
@@ -3312,6 +3797,9 @@ export const routes: Route[] = [
         stopSequence: 31,
         turnSeq: 31,
         turnYn: 'Y',
+        arrivalTime: {
+          '19:30': '21:03',
+        },
       },
     ],
   },
@@ -3338,6 +3826,11 @@ export const routes: Route[] = [
         stopSequence: 1,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '06:45',
+          '07:30': '07:30',
+          '08:00': '08:00',
+        },
       },
       {
         centerYn: 'N',
@@ -3365,6 +3858,11 @@ export const routes: Route[] = [
         stopSequence: 3,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '06:49',
+          '07:30': '07:34',
+          '08:00': '08:04',
+        },
       },
       {
         centerYn: 'N',
@@ -3379,6 +3877,11 @@ export const routes: Route[] = [
         stopSequence: 4,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '06:54',
+          '07:30': '07:39',
+          '08:00': '08:09',
+        },
       },
       {
         centerYn: 'N',
@@ -3393,6 +3896,11 @@ export const routes: Route[] = [
         stopSequence: 5,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '06:58',
+          '07:30': '07:43',
+          '08:00': '08:13',
+        },
       },
       {
         centerYn: 'N',
@@ -3407,6 +3915,11 @@ export const routes: Route[] = [
         stopSequence: 6,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:02',
+          '07:30': '07:47',
+          '08:00': '08:17',
+        },
       },
       {
         centerYn: 'N',
@@ -3421,6 +3934,11 @@ export const routes: Route[] = [
         stopSequence: 7,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:06',
+          '07:30': '07:51',
+          '08:00': '08:21',
+        },
       },
       {
         centerYn: 'N',
@@ -3435,6 +3953,11 @@ export const routes: Route[] = [
         stopSequence: 8,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:11',
+          '07:30': '07:56',
+          '08:00': '08:26',
+        },
       },
       {
         centerYn: 'N',
@@ -3449,6 +3972,11 @@ export const routes: Route[] = [
         stopSequence: 9,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:15',
+          '07:30': '08:00',
+          '08:00': '08:30',
+        },
       },
       {
         centerYn: 'N',
@@ -3463,6 +3991,11 @@ export const routes: Route[] = [
         stopSequence: 10,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:19',
+          '07:30': '08:04',
+          '08:00': '08:34',
+        },
       },
       {
         centerYn: 'N',
@@ -3477,6 +4010,11 @@ export const routes: Route[] = [
         stopSequence: 11,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:23',
+          '07:30': '08:08',
+          '08:00': '08:38',
+        },
       },
       {
         centerYn: 'N',
@@ -3491,6 +4029,11 @@ export const routes: Route[] = [
         stopSequence: 12,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:28',
+          '07:30': '08:13',
+          '08:00': '08:43',
+        },
       },
       {
         centerYn: 'N',
@@ -3505,6 +4048,11 @@ export const routes: Route[] = [
         stopSequence: 13,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:32',
+          '07:30': '08:17',
+          '08:00': '08:47',
+        },
       },
       {
         centerYn: 'N',
@@ -3519,6 +4067,11 @@ export const routes: Route[] = [
         stopSequence: 14,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:36',
+          '07:30': '08:21',
+          '08:00': '08:51',
+        },
       },
       {
         centerYn: 'N',
@@ -3533,6 +4086,11 @@ export const routes: Route[] = [
         stopSequence: 15,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:40',
+          '07:30': '08:25',
+          '08:00': '08:55',
+        },
       },
       {
         centerYn: 'N',
@@ -3547,6 +4105,11 @@ export const routes: Route[] = [
         stopSequence: 16,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:45',
+          '07:30': '08:30',
+          '08:00': '09:00',
+        },
       },
       {
         centerYn: 'N',
@@ -3561,6 +4124,11 @@ export const routes: Route[] = [
         stopSequence: 17,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:49',
+          '07:30': '08:34',
+          '08:00': '09:04',
+        },
       },
       {
         centerYn: 'N',
@@ -3575,6 +4143,11 @@ export const routes: Route[] = [
         stopSequence: 18,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:53',
+          '07:30': '08:38',
+          '08:00': '09:08',
+        },
       },
       {
         centerYn: 'N',
@@ -3589,6 +4162,11 @@ export const routes: Route[] = [
         stopSequence: 19,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '07:57',
+          '07:30': '08:42',
+          '08:00': '09:12',
+        },
       },
       {
         centerYn: 'N',
@@ -3603,6 +4181,11 @@ export const routes: Route[] = [
         stopSequence: 20,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '08:02',
+          '07:30': '08:47',
+          '08:00': '09:17',
+        },
       },
       {
         centerYn: 'Y',
@@ -3617,6 +4200,11 @@ export const routes: Route[] = [
         stopSequence: 21,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '08:06',
+          '07:30': '08:51',
+          '08:00': '09:21',
+        },
       },
       {
         centerYn: 'N',
@@ -3800,6 +4388,11 @@ export const routes: Route[] = [
         stopSequence: 35,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '08:10',
+          '07:30': '08:55',
+          '08:00': '09:25',
+        },
       },
       {
         centerYn: 'N',
@@ -3814,6 +4407,11 @@ export const routes: Route[] = [
         stopSequence: 36,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '08:14',
+          '07:30': '08:59',
+          '08:00': '09:29',
+        },
       },
       {
         centerYn: 'N',
@@ -3854,6 +4452,11 @@ export const routes: Route[] = [
         stopSequence: 39,
         turnSeq: 39,
         turnYn: 'Y',
+        arrivalTime: {
+          '6:45': '08:19',
+          '07:30': '09:04',
+          '08:00': '09:34',
+        },
       },
       {
         centerYn: 'N',
@@ -3881,6 +4484,11 @@ export const routes: Route[] = [
         stopSequence: 41,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '08:23',
+          '07:30': '09:08',
+          '08:00': '09:38',
+        },
       },
       {
         centerYn: 'Y',
@@ -3895,6 +4503,11 @@ export const routes: Route[] = [
         stopSequence: 42,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '08:27',
+          '07:30': '09:12',
+          '08:00': '09:42',
+        },
       },
       {
         centerYn: 'Y',
@@ -3909,6 +4522,11 @@ export const routes: Route[] = [
         stopSequence: 43,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '08:31',
+          '07:30': '09:16',
+          '08:00': '09:46',
+        },
       },
       {
         centerYn: 'Y',
@@ -3923,6 +4541,11 @@ export const routes: Route[] = [
         stopSequence: 44,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '08:36',
+          '07:30': '09:21',
+          '08:00': '09:51',
+        },
       },
       {
         centerYn: 'N',
@@ -3937,6 +4560,11 @@ export const routes: Route[] = [
         stopSequence: 45,
         turnSeq: 39,
         turnYn: 'N',
+        arrivalTime: {
+          '6:45': '08:40',
+          '07:30': '09:25',
+          '08:00': '09:55',
+        },
       },
     ],
   },

@@ -11,4 +11,5 @@ export interface BusStop {
   y?: number
   adminName?: string
   turnSeq: number
+  arrivalTime?: Record<string, string>
 }
