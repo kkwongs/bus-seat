@@ -92,6 +92,7 @@
                 :key="stop.stopId"
                 ref="routeStopRef"
                 :stop="stop"
+                :selected-departure-time="selectedDepartureTime"
                 @select-start-stop="moveToFirstAlighting"
               />
             </ul>
@@ -181,7 +182,24 @@ const tarvelTimeMessage = computed(() => {
     return '도착지를 선택하세요'
   }
 
-  return `소요시간 ${1}시간 ${19}분`
+  const getTravelTimeMessage = (start: string, end: string) => {
+    const [startHour, startMinute] = start.split(':').map(Number)
+    const [endHour, endMinute] = end.split(':').map(Number)
+
+    const diff = endHour * 60 + endMinute - (startHour * 60 + startMinute)
+
+    const hours = Math.floor(diff / 60)
+    const minutes = diff % 60
+
+    return hours ? `소요시간 ${hours}시간 ${minutes}분` : `소요시간 ${minutes}분`
+  }
+
+  if (!selectedDepartureTime.value) return
+
+  const startArrivalTime = routeStore.selectedStartStop.arrivalTime[selectedDepartureTime.value]
+  const endArrivalTime = routeStore.selectedEndStop.arrivalTime[selectedDepartureTime.value]
+
+  return getTravelTimeMessage(startArrivalTime, endArrivalTime)
 })
 
 watch(isModalOpen, (value) => {

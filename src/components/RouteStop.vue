@@ -11,9 +11,9 @@
           <span :class="{ 'text-slate-300': !stop.stopNumber }">
             {{ stop.stopNumber || '미정차' }}
           </span>
-          <template v-if="stop.stopNumber">
+          <template v-if="stop.arrivalTime && selectedDepartureTime">
             <span class="text-xs text-slate-400">|</span>
-            <span>&plusmn;08:09</span>
+            <span>&plusmn;{{ stop.arrivalTime[selectedDepartureTime] }}</span>
           </template>
         </div>
       </div>
@@ -42,6 +42,7 @@ import type { BusStop } from '@/types'
 
 const props = defineProps<{
   stop: BusStop
+  selectedDepartureTime: string | undefined
 }>()
 
 const emit = defineEmits(['selectStartStop'])
