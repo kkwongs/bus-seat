@@ -8,54 +8,68 @@
       leave-from-class="opacity-100"
       leave-to-class="opacity-0"
     >
-      <div v-if="open" class="fixed inset-0 z-100 flex items-center justify-center">
+      <div v-if="shouldRender" class="fixed inset-0 z-100 flex items-center justify-center">
         <!-- Backdrop -->
         <div class="absolute inset-0 bg-black/50" @click="handleBackdrop" />
 
-        <!-- Modal -->
-        <div
-          class="relative w-full overflow-hidden rounded-xl bg-white shadow-xl"
-          :class="[sizeClass[size]]"
-          role="dialog"
-          aria-modal="true"
+        <Transition
+          appear
+          enter-active-class="transition-transform"
+          enter-from-class="translate-y-full"
+          enter-to-class="translate-y-0"
+          leave-active-class="transition-[transform_opacity]"
+          leave-from-class="translate-y-0 opacity-100"
+          leave-to-class="translate-y-full opacity-0"
+          @after-leave="onAfterLeave"
         >
-          <!-- Header -->
+          <!-- Modal -->
           <div
-            v-if="title || $slots.header"
-            class="flex items-center justify-between px-6 py-4 pr-4"
+            v-if="open"
+            class="relative w-full overflow-hidden rounded-xl bg-white shadow-xl"
+            :class="[sizeClass[size]]"
+            role="dialog"
+            aria-modal="true"
           >
-            <slot name="header">
-              <h2 class="text-lg font-semibold">
-                {{ title }}
-              </h2>
-            </slot>
-
-            <button
-              type="button"
-              class="size-7 rounded-md text-sm text-gray-600 hover:bg-gray-100"
-              aria-label="닫기"
-              @click="close"
+            <!-- Header -->
+            <div
+              v-if="title || $slots.header"
+              class="flex items-center justify-between px-6 py-4 pr-4"
             >
-              ✕
-            </button>
-          </div>
+              <slot name="header">
+                <h2 class="text-lg font-semibold">
+                  {{ title }}
+                </h2>
+              </slot>
 
-          <!-- Body -->
-          <div class="px-6">
-            <slot />
-          </div>
+              <button
+                type="button"
+                class="size-7 rounded-md text-sm text-gray-600 hover:bg-gray-100"
+                aria-label="닫기"
+                @click="close"
+              >
+                ✕
+              </button>
+            </div>
 
-          <!-- Footer -->
-          <div v-if="$slots.footer" class="flex justify-end gap-2 px-6 py-4">
-            <slot name="footer" />
+            <!-- Body -->
+            <div class="px-6">
+              <slot />
+            </div>
+
+            <!-- Footer -->
+            <div v-if="$slots.footer" class="flex justify-end gap-2 px-6 py-4">
+              <slot name="footer" />
+            </div>
           </div>
-        </div>
+        </Transition>
       </div>
     </Transition>
   </Teleport>
 </template>
 
 <script setup lang="ts">
+import { ref, watch } from 'vue'
+
 import { useBodyScrollLock, useEscapeKey } from '@/composables'
 
 interface Props {
@@ -92,6 +106,19 @@ const sizeClass = {
   md: 'max-w-md',
   lg: 'max-w-lg',
   xl: 'max-w-xl',
+}
+
+const shouldRender = ref(props.open)
+
+watch(
+  () => props.open,
+  (value) => {
+    if (value) shouldRender.value = true
+  },
+)
+
+const onAfterLeave = () => {
+  shouldRender.value = false
 }
 
 const close = () => {
