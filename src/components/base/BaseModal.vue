@@ -25,7 +25,7 @@
           <!-- Modal -->
           <div
             v-if="open"
-            class="relative w-full overflow-hidden rounded-xl bg-white shadow-xl"
+            class="relative mx-5 w-full overflow-hidden rounded-xl bg-white shadow-xl"
             :class="[sizeClass[size]]"
             role="dialog"
             aria-modal="true"

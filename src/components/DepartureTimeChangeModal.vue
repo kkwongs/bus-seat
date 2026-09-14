@@ -1,6 +1,6 @@
 <template>
   <BaseModal :open="isOpen" size="sm" @close="close">
-    <div class="-mx-6">
+    <div class="-mx-6 max-h-[50vh] divide-y divide-gray-300 overflow-y-auto">
       <button
         v-for="departureTime in routeStore.route?.departureTimes"
         :key="departureTime"
@@ -8,7 +8,7 @@
         @click="selectTime(departureTime)"
       >
         <span class="font-medium">{{ departureTime }}</span>
-        <Check v-if="departureTime === selectedDepartureTime" />
+        <Check v-if="departureTime === selectedDepartureTime" class="text-sky-500" />
       </button>
     </div>
   </BaseModal>
