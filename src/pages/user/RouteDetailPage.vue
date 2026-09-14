@@ -39,6 +39,7 @@
               <div class="flex items-center justify-between">
                 <span>{{ selectedDepartureTime }}</span>
                 <button
+                  v-if="routeStore.route.departureTimes.length > 1"
                   class="inline-flex rounded-xl py-0.5 pl-1.5 text-sm font-medium text-sky-600"
                   @click="isModalOpen = true"
                 >
@@ -120,14 +121,15 @@
   </div>
 
   <DepartureTimeChangeModal
-    v-if="isModalOpen"
+    :is-open="isModalOpen"
     :selected-departure-time="selectedDepartureTime"
     @change-time="changeTime"
+    @close="isModalOpen = false"
   />
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 import ArrowRight from '@primeicons/vue/arrow-right'
 import ExclamationCircle from '@primeicons/vue/exclamation-circle'
@@ -200,10 +202,6 @@ const tarvelTimeMessage = computed(() => {
   const endArrivalTime = routeStore.selectedEndStop.arrivalTime[selectedDepartureTime.value]
 
   return getTravelTimeMessage(startArrivalTime, endArrivalTime)
-})
-
-watch(isModalOpen, (value) => {
-  document.body.style.overflow = value ? 'hidden' : ''
 })
 
 const changeTime = (time: string) => {
