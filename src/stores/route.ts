@@ -13,6 +13,10 @@ export const useRouteStore = defineStore('route', () => {
   const selectedStartStop = ref()
   const selectedEndStop = ref()
 
+  /**
+   * Replaces the route summaries using the supplied search and records request failures in the
+   * store instead of propagating them.
+   */
   const fetchRoutes = async (params: RouteSearch = {}) => {
     isLoading.value = true
     errorMessage.value = ''
@@ -28,6 +32,10 @@ export const useRouteStore = defineStore('route', () => {
     }
   }
 
+  /**
+   * Loads one route into the store, records request failures, and clears the loading state when the
+   * request settles.
+   */
   const fetchRoute = async (routeId: string) => {
     try {
       const { data } = await routeApi.getRoute(routeId)
@@ -39,6 +47,7 @@ export const useRouteStore = defineStore('route', () => {
     }
   }
 
+  /** Clears the current route detail and both selected stops. */
   const $reset = () => {
     route.value = null
     selectedStartStop.value = undefined

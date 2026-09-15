@@ -8,6 +8,10 @@ const searchableRoutes = routes.map((route) => ({
   searchText: [route.routeName, ...route.stops.map((stop) => stop.stopName)].join(' '),
 }))
 
+/**
+ * Returns mock route summaries whose route or stop names contain the keyword, or all summaries
+ * when no keyword is supplied.
+ */
 export const getMockRoutes = async (params: RouteSearch): Promise<ApiListResponse<RouteList>> => {
   const { keyword } = params
 
@@ -33,6 +37,10 @@ export const getMockRoutes = async (params: RouteSearch): Promise<ApiListRespons
   }
 }
 
+/**
+ * Looks up a mock route after a simulated delay, returning a 404 response with null data when its
+ * numeric identifier is not found.
+ */
 export const getMockRoute = async (routeId: string): Promise<ApiResponse<Route | null>> => {
   await mockDelay(100)
 

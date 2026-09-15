@@ -1,6 +1,10 @@
 import { onScopeDispose, ref, watch } from 'vue'
 import type { Ref } from 'vue'
 
+/**
+ * Creates a ref that adopts the source's latest value after the source remains unchanged for the
+ * requested delay. Any pending update is canceled when the current reactive scope is disposed.
+ */
 export const useDebounce = <Raw>(source: Ref<Raw>, delay = 300) => {
   const debounced = ref(source.value) as Ref<Raw>
 

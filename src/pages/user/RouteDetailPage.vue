@@ -183,6 +183,10 @@ const routeLineHeight = computed(() => {
   return 0
 })
 
+/**
+ * Formats the elapsed minutes between the selected stops for the chosen departure, or remains
+ * empty until all three selections are available.
+ */
 const travelTime = computed(() => {
   if (
     !routeStore.selectedStartStop ||
@@ -227,6 +231,7 @@ const resetSelectedStop = () => {
   routeStore.selectedEndStop = undefined
 }
 
+/** Smoothly centers the first stop where passengers may alight, when its element is available. */
 const scrollToFirstAlighting = () => {
   if (!routeStore?.route) return
 
@@ -237,6 +242,10 @@ const scrollToFirstAlighting = () => {
   firstAlightingStop.scrollIntoView({ behavior: 'smooth', block: 'center' })
 }
 
+/**
+ * Loads the requested route, then captures a stop row's height and selects the first departure
+ * time when those values are available.
+ */
 const fetchRoute = async () => {
   await routeStore.fetchRoute(props.routeId)
 

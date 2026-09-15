@@ -98,6 +98,9 @@ const searchInputRef = ref<HTMLInputElement | null>(null)
 
 const debouncedKeyword = useDebounce(searchKeyword)
 
+/**
+ * Formats up to three departure times as a list and longer schedules as their first-to-last range.
+ */
 const formatDepartureTime = (times: string[]) => {
   if (!times) return
   return times.length > 3 ? `${times[0]} ~ ${times.at(-1)}` : times.join(' / ')
