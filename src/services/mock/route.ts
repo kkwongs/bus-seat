@@ -3,13 +3,18 @@ import { mockDelay } from '.'
 
 import type { RouteList, RouteSearch, Route, ApiListResponse, ApiResponse } from '@/types'
 
-export const getMockRoutes = async (params: RouteSearch): Promise<ApiListResponse<RouteList>> => {
-  await mockDelay()
+const searchableRoutes = routes.map((route) => ({
+  route,
+  searchText: [route.routeName, ...route.stops.map((stop) => stop.stopName)].join(' '),
+}))
 
+export const getMockRoutes = async (params: RouteSearch): Promise<ApiListResponse<RouteList>> => {
   const { keyword } = params
 
   const filteredRoutes = keyword
-    ? routes.filter((route) => route.routeName.includes(keyword))
+    ? searchableRoutes
+        .filter(({ searchText }) => searchText.includes(keyword))
+        .map(({ route }) => route)
     : routes
 
   return {
