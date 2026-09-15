@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 
 import { useRouteStore } from '@/stores/route'
 
@@ -45,7 +45,9 @@ const props = defineProps<{
   selectedDepartureTime: string | undefined
 }>()
 
-const emit = defineEmits(['selectStartStop'])
+const emit = defineEmits<{
+  selectStartStop: []
+}>()
 
 const root = ref<HTMLElement | null>(null)
 
@@ -90,6 +92,18 @@ const isStopLabelVisible = computed(() => {
   return selectedStop.stopId === props.stop.stopId
 })
 
+const scrollToEndStop = async () => {
+  await nextTick()
+
+  const endStopRef = root.value
+
+  if (!endStopRef) {
+    return
+  }
+
+  endStopRef.scrollIntoView({ behavior: 'smooth', block: 'center' })
+}
+
 const selectStop = () => {
   if (!isBoarding.value) {
     if (!routeStore.selectedStartStop) {
@@ -100,6 +114,8 @@ const selectStop = () => {
       routeStore.selectedEndStop = undefined
     } else {
       routeStore.selectedEndStop = props.stop
+
+      scrollToEndStop()
     }
 
     return
@@ -112,6 +128,7 @@ const selectStop = () => {
   }
 
   routeStore.selectedStartStop = props.stop
+
   emit('selectStartStop')
 }
 </script>

@@ -13,7 +13,7 @@
         >
           <div class="space-y-0.5 self-start text-center">
             <p class="text-sm text-slate-500">기점</p>
-            <p class="px-3">{{ routeStore.startStopName }}</p>
+            <p class="px-3">{{ routeStore.route.startStopName }}</p>
           </div>
 
           <div class="inline-flex rounded-full bg-slate-200 p-2">
@@ -22,7 +22,7 @@
 
           <div class="space-y-0.5 self-start text-center">
             <p class="text-sm text-slate-500">종점</p>
-            <p class="px-3">{{ routeStore.endStopName }}</p>
+            <p class="px-3">{{ routeStore.route.endStopName }}</p>
           </div>
         </div>
 
@@ -70,7 +70,7 @@
               </button>
             </div>
 
-            <div class="inline-flex items-center gap-x-1">
+            <div class="inline-flex items-center gap-x-1 self-start">
               <span class="inline-flex items-center text-sm">
                 <ExclamationCircle class="text-slate-400" />
                 <span>운행시간 안내</span>
@@ -94,7 +94,7 @@
                 ref="routeStopRef"
                 :stop="stop"
                 :selected-departure-time="selectedDepartureTime"
-                @select-start-stop="moveToFirstAlighting"
+                @select-start-stop="scrollToFirstAlighting"
               />
             </ul>
 
@@ -111,7 +111,7 @@
             </div>
           </div>
 
-          <p class="py-5 text-sm text-slate-600">
+          <p class="pt-4 text-sm text-slate-600">
             * 정류장 시간은 '평균도착시간'으로 실제 도착시간과 차이가 있을 수 있습니다. 실시간 위치
             정보를 함께 참고하여 이용 바랍니다.
           </p>
@@ -126,6 +126,13 @@
     @change-time="changeTime"
     @close="isModalOpen = false"
   />
+
+  <RouteReservationBar
+    v-if="travelTime"
+    :travel-time="travelTime"
+    :departure-time="selectedDepartureTime"
+    class="-m-4 lg:-m-8"
+  />
 </template>
 
 <script setup lang="ts">
@@ -139,6 +146,7 @@ import ChevronRight from '@primeicons/vue/chevron-right'
 
 import RouteStop from '@/components/RouteStop.vue'
 import DepartureTimeChangeModal from '@/components/DepartureTimeChangeModal.vue'
+import RouteReservationBar from './components/RouteReservationBar.vue'
 
 import { useRouteStore } from '@/stores/route'
 
@@ -151,7 +159,7 @@ const routeStore = useRouteStore()
 const routeStopRef = ref<InstanceType<typeof RouteStop>[]>([])
 const routeStopRefHeight = ref(0)
 const isModalOpen = ref(false)
-const selectedDepartureTime = ref<string | undefined>('')
+const selectedDepartureTime = ref<string>('')
 
 const routeLineTop = computed(() => {
   if (routeStore.selectedStartStop) {
@@ -175,6 +183,28 @@ const routeLineHeight = computed(() => {
   return 0
 })
 
+const travelTime = computed(() => {
+  if (
+    !routeStore.selectedStartStop ||
+    !routeStore.selectedEndStop ||
+    !selectedDepartureTime.value
+  ) {
+    return
+  }
+  const startArrivalTime = routeStore.selectedStartStop.arrivalTime[selectedDepartureTime.value]
+  const endArrivalTime = routeStore.selectedEndStop.arrivalTime[selectedDepartureTime.value]
+
+  const [startHour, startMinute] = startArrivalTime.split(':').map(Number)
+  const [endHour, endMinute] = endArrivalTime.split(':').map(Number)
+
+  const diff = endHour * 60 + endMinute - (startHour * 60 + startMinute)
+
+  const hours = Math.floor(diff / 60)
+  const minutes = diff % 60
+
+  return hours ? `소요시간 ${hours}시간 ${minutes}분` : `소요시간 ${minutes}분`
+})
+
 const tarvelTimeMessage = computed(() => {
   if (!routeStore.selectedStartStop) {
     return '출발지를 선택하세요'
@@ -184,24 +214,7 @@ const tarvelTimeMessage = computed(() => {
     return '도착지를 선택하세요'
   }
 
-  const getTravelTimeMessage = (start: string, end: string) => {
-    const [startHour, startMinute] = start.split(':').map(Number)
-    const [endHour, endMinute] = end.split(':').map(Number)
-
-    const diff = endHour * 60 + endMinute - (startHour * 60 + startMinute)
-
-    const hours = Math.floor(diff / 60)
-    const minutes = diff % 60
-
-    return hours ? `소요시간 ${hours}시간 ${minutes}분` : `소요시간 ${minutes}분`
-  }
-
-  if (!selectedDepartureTime.value) return
-
-  const startArrivalTime = routeStore.selectedStartStop.arrivalTime[selectedDepartureTime.value]
-  const endArrivalTime = routeStore.selectedEndStop.arrivalTime[selectedDepartureTime.value]
-
-  return getTravelTimeMessage(startArrivalTime, endArrivalTime)
+  return travelTime
 })
 
 const changeTime = (time: string) => {
@@ -214,10 +227,10 @@ const resetSelectedStop = () => {
   routeStore.selectedEndStop = undefined
 }
 
-const moveToFirstAlighting = () => {
+const scrollToFirstAlighting = () => {
   if (!routeStore?.route) return
 
-  const firstAlightingStop = routeStopRef.value[routeStore.route.alightingStartSequence].root
+  const firstAlightingStop = routeStopRef.value[routeStore.route.alightingStartSequence - 1].root
 
   if (!firstAlightingStop) return
 
@@ -229,6 +242,10 @@ const fetchRoute = async () => {
 
   if (routeStopRef.value[0].root) {
     routeStopRefHeight.value = routeStopRef.value[0].root.getBoundingClientRect().height
+  }
+
+  if (!routeStore.route?.departureTimes) {
+    return
   }
 
   selectedDepartureTime.value = routeStore.route?.departureTimes[0]
