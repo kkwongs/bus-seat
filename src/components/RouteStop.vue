@@ -68,6 +68,7 @@ const boardingAlightingClass = computed(() => {
   }
 })
 
+/** Whether this stop belongs to the route's boarding portion. */
 const isBoarding = computed(() => {
   const boardingEndSequence = routeStore.route?.boardingEndSequence
 
@@ -78,6 +79,10 @@ const isBoarding = computed(() => {
   return boardingEndSequence >= props.stop.stopSequence
 })
 
+/**
+ * Whether to show a boarding or alighting control for this numbered stop. Once a stop in the same
+ * portion is selected, only that stop retains its control.
+ */
 const isStopLabelVisible = computed(() => {
   if (!props.stop.stopNumber) {
     return false
@@ -92,6 +97,7 @@ const isStopLabelVisible = computed(() => {
   return selectedStop.stopId === props.stop.stopId
 })
 
+/** Smoothly centers this stop after Vue has applied the pending selection update. */
 const scrollToEndStop = async () => {
   await nextTick()
 
@@ -104,6 +110,10 @@ const scrollToEndStop = async () => {
   endStopRef.scrollIntoView({ behavior: 'smooth', block: 'center' })
 }
 
+/**
+ * Toggles this stop as the route's boarding or alighting selection. Selecting a boarding stop
+ * emits an event so the parent can scroll to the first alighting option.
+ */
 const selectStop = () => {
   if (!isBoarding.value) {
     if (!routeStore.selectedStartStop) {
