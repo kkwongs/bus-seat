@@ -22,9 +22,26 @@ const router = createRouter({
     },
     {
       path: '/user',
-      name: 'user',
-      component: () => import('@/pages/user/UserHomePage.vue'),
+      component: () => import('@/layouts/UserLayout.vue'),
       meta: { requiresAuth: true, role: 'USER' },
+      children: [
+        {
+          path: 'routes',
+          name: 'user-routes',
+          component: () => import('@/pages/user/RouteListPage.vue'),
+        },
+        {
+          path: 'routes/:routeId',
+          name: 'user-route-detail',
+          component: () => import('@/pages/user/RouteDetailPage.vue'),
+          props: (route) => ({ routeId: route.params.routeId }),
+        },
+        {
+          path: 'my',
+          name: 'user-my',
+          component: () => import('@/pages/user/MyPage.vue'),
+        },
+      ],
     },
     {
       path: '/admin',
