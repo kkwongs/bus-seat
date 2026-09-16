@@ -127,12 +127,17 @@
     @close="isModalOpen = false"
   />
 
-  <RouteReservationBar
-    v-if="travelTime"
-    :travel-time="travelTime"
-    :departure-time="selectedDepartureTime"
-    class="-m-4 lg:-m-8"
-  />
+  <Transition
+    enter-active-class="transition-transform duration-300"
+    enter-from-class="translate-y-full"
+    enter-to-class="translate-y-0"
+  >
+    <RouteReservationBar
+      v-if="travelTime"
+      :travel-time="travelTime"
+      :departure-time="selectedDepartureTime"
+    />
+  </Transition>
 </template>
 
 <script setup lang="ts">
