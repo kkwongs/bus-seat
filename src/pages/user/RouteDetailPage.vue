@@ -136,8 +136,15 @@
       v-if="travelTime"
       :travel-time="travelTime"
       :departure-time="selectedDepartureTime"
+      @open-reservation="isOpenReservation = true"
     />
   </Transition>
+
+  <ReservationModal
+    :open="isOpenReservation"
+    :departure-time="selectedDepartureTime"
+    @close="isOpenReservation = false"
+  />
 </template>
 
 <script setup lang="ts">
@@ -152,6 +159,7 @@ import ChevronRight from '@primeicons/vue/chevron-right'
 import RouteStop from '@/components/RouteStop.vue'
 import DepartureTimeChangeModal from '@/components/DepartureTimeChangeModal.vue'
 import RouteReservationBar from './components/RouteReservationBar.vue'
+import ReservationModal from './components/ReservationModal.vue'
 
 import { useRouteStore } from '@/stores/route'
 
@@ -164,6 +172,7 @@ const routeStore = useRouteStore()
 const routeStopRef = ref<InstanceType<typeof RouteStop>[]>([])
 const routeStopRefHeight = ref(0)
 const isModalOpen = ref(false)
+const isOpenReservation = ref(false)
 const selectedDepartureTime = ref<string>('')
 
 const routeLineTop = computed(() => {

@@ -1,7 +1,7 @@
 <template>
   <Teleport to="#user-layout">
     <nav
-      class="sticky inset-x-0 bottom-0 z-150 flex justify-center bg-linear-to-t from-slate-50 via-white via-90% to-white/10 p-4 shadow-2xs"
+      class="sticky inset-x-0 bottom-0 z-100 flex justify-center bg-linear-to-t from-slate-50 via-white via-90% to-white/10 p-4 shadow-2xs"
     >
       <div class="max-w-md flex-1 space-y-3 text-sm">
         <div>
@@ -34,7 +34,9 @@
           >
             <Star class="text-slate-400" :size="18" />
           </button>
-          <button class="flex-1 rounded-lg bg-sky-600 font-medium text-white">예약하기</button>
+          <button class="flex-1 rounded-lg bg-sky-600 font-medium text-white" @click="open">
+            예약하기
+          </button>
         </div>
       </div>
     </nav>
@@ -53,7 +55,15 @@ interface Props {
 }
 defineProps<Props>()
 
+const emit = defineEmits<{
+  openReservation: []
+}>()
+
 const routeStore = useRouteStore()
+
+const open = () => {
+  emit('openReservation')
+}
 </script>
 
 <style scoped></style>
