@@ -32,7 +32,14 @@
           <button
             class="inline-flex size-10 items-center justify-center rounded-lg border-2 border-slate-200"
           >
-            <Star class="text-slate-400" :size="18" />
+            <Star v-if="!isFavorite" class="text-slate-400" :size="18" @click="addFavorite" />
+            <StarFill
+              v-else
+              class="text-slate-400"
+              :size="18"
+              color="var(--color-sky-600)"
+              @click="removeFavorite"
+            />
           </button>
           <button class="flex-1 rounded-lg bg-sky-600 font-medium text-white" @click="open">
             예약하기
@@ -44,22 +51,78 @@
 </template>
 
 <script setup lang="ts">
-import { useRouteStore } from '@/stores/route'
+import { computed } from 'vue'
 
 import Star from '@primeicons/vue/star'
 import ArrowRight from '@primeicons/vue/arrow-right'
+import StarFill from '@primeicons/vue/star-fill'
+
+import { useRouteStore } from '@/stores/route'
+import { useFavoriteStore } from '@/stores/favorite'
+
+import { isFavoriteExists } from '@/utils/favorite'
+
+import type { FavoriteRoute } from '@/types'
 
 interface Props {
   travelTime?: string
   departureTime: string
+  routeId: number
 }
-defineProps<Props>()
+const props = defineProps<Props>()
 
 const emit = defineEmits<{
   openReservation: []
 }>()
 
 const routeStore = useRouteStore()
+const favoriteStore = useFavoriteStore()
+
+const createFavorite = computed(() => {
+  const { routeId, departureTime } = props
+  const { selectedStartStop, selectedEndStop } = routeStore
+
+  const boardingStop = {
+    stopId: selectedStartStop.stopId,
+    stopName: selectedStartStop.stopName,
+    arrivalTime: selectedStartStop.arrivalTime[departureTime],
+  }
+
+  const alightingStop = {
+    stopId: selectedEndStop.stopId,
+    stopName: selectedEndStop.stopName,
+    arrivalTime: selectedEndStop.arrivalTime[departureTime],
+  }
+
+  return {
+    routeId,
+    departureTime,
+    boardingStop,
+    alightingStop,
+  }
+})
+
+const isFavorite = computed(() =>
+  isFavoriteExists(favoriteStore.favoriteRoutes, createFavorite.value),
+)
+
+const removeFavorite = () => {
+  const { routeId, departureTime, boardingStop, alightingStop } = createFavorite.value
+
+  const { favoriteId } = favoriteStore.favoriteRoutes.find(
+    (favorite) =>
+      favorite.routeId === routeId &&
+      favorite.departureTime === departureTime &&
+      favorite.boardingStop.stopId === boardingStop.stopId &&
+      favorite.alightingStop.stopId === alightingStop.stopId,
+  ) as FavoriteRoute
+
+  favoriteStore.deleteFavorite(favoriteId)
+}
+
+const addFavorite = () => {
+  favoriteStore.addFavorite(createFavorite.value)
+}
 
 const open = () => {
   emit('openReservation')

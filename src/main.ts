@@ -8,6 +8,18 @@ import { useAuthStore } from './stores/auth.ts'
 
 import './styles/index.css'
 
+import { env } from '@/constants/env'
+
+async function prepareApp() {
+  if (!env.useMock) {
+    return
+  }
+
+  const { worker } = await import('./mocks/browser')
+
+  return worker.start({ onUnhandledRequest: 'bypass' })
+}
+
 const pinia = createPinia()
 const app = createApp(App)
 
@@ -17,4 +29,6 @@ const authStore = useAuthStore(pinia)
 
 authStore.restoreAuth()
 
-app.mount('#app')
+prepareApp().then(() => {
+  app.mount('#app')
+})

@@ -136,6 +136,7 @@
       v-if="travelTime"
       :travel-time="travelTime"
       :departure-time="selectedDepartureTime"
+      :route-id="Number(route.params.routeId)"
       @open-reservation="isOpenReservation = true"
     />
   </Transition>
@@ -149,6 +150,7 @@
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 import ArrowRight from '@primeicons/vue/arrow-right'
 import ExclamationCircle from '@primeicons/vue/exclamation-circle'
@@ -162,12 +164,12 @@ import RouteReservationBar from './components/RouteReservationBar.vue'
 import ReservationModal from './components/ReservationModal.vue'
 
 import { useRouteStore } from '@/stores/route'
-
-const props = defineProps<{
-  routeId: string
-}>()
+import { useFavoriteStore } from '@/stores/favorite'
 
 const routeStore = useRouteStore()
+const favoriteStore = useFavoriteStore()
+
+const route = useRoute()
 
 const routeStopRef = ref<InstanceType<typeof RouteStop>[]>([])
 const routeStopRefHeight = ref(0)
@@ -252,7 +254,7 @@ const scrollToFirstAlighting = () => {
 }
 
 const fetchRoute = async () => {
-  await routeStore.fetchRoute(props.routeId)
+  await routeStore.fetchRoute(route.params.routeId as string)
 
   if (routeStopRef.value[0].root) {
     routeStopRefHeight.value = routeStopRef.value[0].root.getBoundingClientRect().height
@@ -265,7 +267,12 @@ const fetchRoute = async () => {
   selectedDepartureTime.value = routeStore.route?.departureTimes[0]
 }
 
-onMounted(fetchRoute)
+onMounted(() => {
+  fetchRoute()
+
+  // localStorage 기반 데이터 초기화를 위해 임시 호출. 추후 main.ts에서 초기화하도록 변경 예정
+  favoriteStore.loadFavoriteRoutes()
+})
 onBeforeUnmount(routeStore.$reset)
 </script>
 
