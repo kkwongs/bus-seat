@@ -9,3 +9,5 @@ export type { BusStop } from './busStop'
 export type { ApiResponse, ApiListResponse } from './api'
 
 export type { Pagination, PaginatedResponse } from './pagination'
+
+export type { FavoriteRoute, FavoriteStop, CreateFavoriteRoute } from './favorite'
