@@ -42,6 +42,7 @@
       <!-- 즐겨찾기 노선 -->
       <div class="p-4">
         <Swiper
+          v-if="favoriteStore.favoriteRoutes.length"
           :centered-slides="true"
           :slides-per-view="1.25"
           :effect="'coverflow'"
@@ -213,6 +214,25 @@
             </button>
           </div>
         </Swiper>
+        <div v-else class="flex justify-center">
+          <div class="w-83 space-y-4 rounded-xl border-2 border-sky-900 p-5">
+            <div class="flex min-h-104.5 flex-col items-center justify-center gap-y-4">
+              <Star :size="40" class="text-slate-400" />
+              <p class="text-center text-sm font-medium">즐겨찾기 노선이 없습니다</p>
+              <div class="text-center text-xs text-slate-600">
+                <p>하단 SEARCH 버튼이나 아래 노선 검색 버튼을</p>
+                <p>선택하셔서 자주 이용하시는 노선의</p>
+                <p>즐겨찾기를 설정해 주세요</p>
+              </div>
+              <RouterLink
+                to="/user/routes"
+                class="mt-4 inline-flex items-center gap-x-2 rounded-full bg-sky-600 px-10 py-2.5 text-slate-100"
+              >
+                <Search />노선 검색
+              </RouterLink>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -240,6 +260,8 @@ import BellSlash from '@primeicons/vue/bell-slash'
 import MapMarker from '@primeicons/vue/map-marker'
 import Megaphone from '@primeicons/vue/megaphone'
 import StarFill from '@primeicons/vue/star-fill'
+import Star from '@primeicons/vue/star'
+import Search from '@primeicons/vue/search'
 
 import { useFavoriteStore } from '@/stores/favorite'
 
