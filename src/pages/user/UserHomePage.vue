@@ -11,7 +11,7 @@
       </div>
 
       <!-- 예치금 -->
-      <div class="rounded-lg border border-slate-200 px-4 py-3 text-sm">
+      <div class="rounded-lg border border-slate-200 px-4 py-3 text-sm max-md:mb-2">
         <div class="flex items-center justify-between">
           <RouterLink to="" class="inline-flex items-center" @click="showUnderDevelopmentAlert">
             <span>예치금</span>
@@ -40,7 +40,7 @@
       </div>
 
       <!-- 즐겨찾기 노선 -->
-      <div class="p-4">
+      <div class="md:p-4">
         <Swiper
           v-if="favoriteStore.favoriteRoutes.length"
           :centered-slides="true"
@@ -62,7 +62,7 @@
           :observe-parents="true"
         >
           <SwiperSlide v-for="route in visibleRoutes" :key="route.routeId">
-            <div class="space-y-4 rounded-xl border-2 border-sky-900 bg-white p-5">
+            <div class="space-y-4 rounded-xl border-2 border-sky-900 bg-white px-5 py-4">
               <div>
                 <div class="flex items-center justify-between">
                   <RouterLink
@@ -94,9 +94,10 @@
                     <p class="text-slate-500">
                       승차 (&plusmn;{{ route.boardingStop.arrivalTime }})
                     </p>
-                    <p>
-                      {{ route.boardingStop.stopName }}({{ route.boardingStop.stopNumber.trim() }})
-                    </p>
+                    <div class="grid grid-cols-[minmax(0,auto)_1fr]">
+                      <span class="truncate">{{ route.boardingStop.stopName }}</span>
+                      <span>({{ route.boardingStop.stopNumber.trim() }})</span>
+                    </div>
                   </div>
                   <button
                     class="inline-flex w-16 items-center justify-center gap-x-0.5 self-baseline rounded-full px-3 py-1.5 text-xs transition"
@@ -117,7 +118,7 @@
                   </button>
                 </div>
 
-                <div class="-mt-6 pl-1.5 text-sm text-slate-500">
+                <div class="-mt-6 pl-1.5 text-sm text-slate-500 max-md:-space-y-1">
                   <div>&middot;</div>
                   <div>&middot;</div>
                   <div>&middot;</div>
@@ -129,11 +130,10 @@
                     <p class="text-slate-500">
                       하차 (&plusmn;{{ route.alightingStop.arrivalTime }})
                     </p>
-                    <p>
-                      {{ route.alightingStop.stopName }}({{
-                        route.alightingStop.stopNumber.trim()
-                      }})
-                    </p>
+                    <div class="grid grid-cols-[minmax(0,auto)_1fr]">
+                      <span class="truncate">{{ route.alightingStop.stopName }}</span>
+                      <span>({{ route.alightingStop.stopNumber.trim() }})</span>
+                    </div>
                   </div>
                   <button
                     class="inline-flex w-16 items-center justify-center gap-x-0.5 self-baseline rounded-full px-3 py-1.5 text-xs transition"
@@ -156,7 +156,9 @@
 
                 <button class="w-full" @click="isOpen = true">
                   <!-- 버튼 영역에서 Swiper 드래그가 동작하도록 내부 요소로 분리 -->
-                  <div class="mt-2 rounded-xl border border-sky-900 p-4 text-sm">예약하기</div>
+                  <div class="mt-2 rounded-xl border border-sky-900 p-2 text-sm md:p-4">
+                    예약하기
+                  </div>
                 </button>
               </div>
 
@@ -177,7 +179,9 @@
 
                 <button class="w-full" @click="showUnderDevelopmentAlert">
                   <!-- 버튼 영역에서 Swiper 드래그가 동작하도록 내부 요소로 분리 -->
-                  <div class="rounded-xl bg-sky-600 p-4 text-sm text-slate-100">빠른예약</div>
+                  <div class="rounded-xl bg-sky-600 p-2 text-sm text-slate-100 md:p-4">
+                    빠른예약
+                  </div>
                 </button>
               </div>
 
@@ -216,7 +220,9 @@
         </Swiper>
         <div v-else class="flex justify-center">
           <div class="w-83 space-y-4 rounded-xl border-2 border-sky-900 p-5">
-            <div class="flex min-h-104.5 flex-col items-center justify-center gap-y-4">
+            <div
+              class="flex min-h-92.5 flex-col items-center justify-center gap-y-4 md:min-h-102.5"
+            >
               <Star :size="40" class="text-slate-400" />
               <p class="text-center text-sm font-medium">즐겨찾기 노선이 없습니다</p>
               <div class="text-center text-xs text-slate-600">
