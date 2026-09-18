@@ -1,6 +1,15 @@
 <template>
   <div class="flex justify-center">
     <div class="w-full max-w-md space-y-4">
+      <!-- 마음 충전소 -->
+      <div class="rounded-xl bg-sky-900 p-4">
+        <span class="text-sm">🔋</span
+        ><span class="text-xs font-bold text-sky-200">마음 충전소</span>
+        <p class="mt-2 text-sm font-medium text-sky-50">
+          {{ message }}
+        </p>
+      </div>
+
       <!-- 예치금 -->
       <div class="rounded-lg border border-slate-200 px-4 py-3 text-sm">
         <div class="flex items-center justify-between">
@@ -176,6 +185,12 @@
                 <p>매일 오전 10시에 7일 후까지 예약이 오픈됩니다.</p>
               </div>
             </div>
+
+            <ReservationModal
+              :open="isOpen"
+              :departure-time="route.departureTime"
+              @close="isOpen = false"
+            />
           </SwiperSlide>
 
           <!-- Pagination -->
@@ -201,8 +216,6 @@
       </div>
     </div>
   </div>
-
-  <ReservationModal :open="isOpen" @close="isOpen = false" />
 </template>
 
 <script setup lang="ts">
@@ -234,7 +247,8 @@ import { showUnderDevelopmentAlert } from '@/utils/alert'
 
 import ReservationModal from './components/ReservationModal.vue'
 
-import { holidays } from '@/constants/holiday.ts'
+import { holidays } from '@/constants/holiday'
+import { messages } from '@/constants/messages'
 
 const pagination = {
   el: '.custom-pagination',
@@ -286,6 +300,11 @@ const isBusinessDay = (date: Date) => {
 
   return isHoliday
 }
+
+const message = computed<string>(() => {
+  const randomIndex = Math.floor(Math.random() * messages.length)
+  return messages[randomIndex].message
+})
 
 const quickReservation = computed(() => {
   let nextDate = addDays(new Date(), 1)

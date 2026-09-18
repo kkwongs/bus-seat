@@ -11,3 +11,5 @@ export type { ApiResponse, ApiListResponse } from './api'
 export type { Pagination, PaginatedResponse } from './pagination'
 
 export type { FavoriteRoute, FavoriteStop, CreateFavoriteRoute } from './favorite'
+
+export type { Message } from './message'
