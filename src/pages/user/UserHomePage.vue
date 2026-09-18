@@ -65,7 +65,7 @@
               <div>
                 <div class="flex items-center justify-between">
                   <RouterLink
-                    :to="`/user/routes/${route.routeId}`"
+                    :to="`/user/routes/${route.routeId}?favoriteId=${route.favoriteId}`"
                     class="inline-flex items-end text-xl font-medium"
                   >
                     <span>{{ route.busCode }}</span>

@@ -30,16 +30,13 @@
         </div>
         <div class="flex gap-x-2">
           <button
-            class="inline-flex size-10 items-center justify-center rounded-lg border-2 border-slate-200"
+            class="group inline-flex size-10 items-center justify-center rounded-lg border-2 border-slate-200"
+            @click="toggleFavorite"
           >
-            <Star v-if="!isFavorite" class="text-slate-400" :size="18" @click="addFavorite" />
-            <StarFill
-              v-else
-              class="text-slate-400"
-              :size="18"
-              color="var(--color-sky-600)"
-              @click="removeFavorite"
-            />
+            <Transition>
+              <Star v-if="!isFavorite" class="text-slate-400 group-hover:text-sky-600" :size="18" />
+              <StarFill v-else class="text-slate-400" :size="18" color="var(--color-sky-600)" />
+            </Transition>
           </button>
           <button class="flex-1 rounded-lg bg-sky-600 font-medium text-white" @click="open">
             예약하기
@@ -128,9 +125,27 @@ const addFavorite = () => {
   favoriteStore.addFavorite(createFavorite.value)
 }
 
+const toggleFavorite = () => {
+  if (!isFavorite.value) {
+    addFavorite()
+  } else {
+    removeFavorite()
+  }
+}
+
 const open = () => {
   emit('openReservation')
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.v-enter-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  width: 0;
+  opacity: 0;
+}
+</style>

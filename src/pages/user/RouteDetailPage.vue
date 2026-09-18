@@ -158,13 +158,15 @@ import Refresh from '@primeicons/vue/refresh'
 import ChevronDown from '@primeicons/vue/chevron-down'
 import ChevronRight from '@primeicons/vue/chevron-right'
 
-import RouteStop from '@/components/RouteStop.vue'
-import DepartureTimeChangeModal from '@/components/DepartureTimeChangeModal.vue'
+import RouteStop from './components/RouteStop.vue'
+import DepartureTimeChangeModal from './components/DepartureTimeChangeModal.vue'
 import RouteReservationBar from './components/RouteReservationBar.vue'
 import ReservationModal from './components/ReservationModal.vue'
 
 import { useRouteStore } from '@/stores/route'
 import { useFavoriteStore } from '@/stores/favorite'
+
+import type { FavoriteRoute } from '@/types/favorite.ts'
 
 const routeStore = useRouteStore()
 const favoriteStore = useFavoriteStore()
@@ -267,11 +269,27 @@ const fetchRoute = async () => {
   selectedDepartureTime.value = routeStore.route?.departureTimes[0]
 }
 
-onMounted(() => {
-  fetchRoute()
+onMounted(async () => {
+  await fetchRoute()
 
   // localStorage 기반 데이터 초기화를 위해 임시 호출. 추후 main.ts에서 초기화하도록 변경 예정
-  favoriteStore.loadFavoriteRoutes()
+  await favoriteStore.loadFavoriteRoutes()
+
+  const favoriteId = Number(route.query.favoriteId)
+  if (!favoriteId) {
+    return
+  }
+
+  const { boardingStop, alightingStop } = favoriteStore.favoriteRoutes.find(
+    (favorite) => favorite.favoriteId === favoriteId,
+  ) as FavoriteRoute
+
+  routeStore.selectedStartStop = routeStore.route?.stops.find(
+    (stop) => stop.stopId === boardingStop.stopId,
+  )
+  routeStore.selectedEndStop = routeStore.route?.stops.find(
+    (stop) => stop.stopId === alightingStop.stopId,
+  )
 })
 onBeforeUnmount(routeStore.$reset)
 </script>
