@@ -62,7 +62,7 @@ import { useFavoriteStore } from '@/stores/favorite'
 
 import { isFavoriteExists } from '@/utils/favorite'
 
-import type { FavoriteRoute } from '@/types'
+import type { FavoriteRoute, Route } from '@/types'
 
 interface Props {
   travelTime?: string
@@ -81,21 +81,25 @@ const favoriteStore = useFavoriteStore()
 const createFavorite = computed(() => {
   const { routeId, departureTime } = props
   const { selectedStartStop, selectedEndStop } = routeStore
+  const { routeName } = routeStore.route as Route
 
   const boardingStop = {
     stopId: selectedStartStop.stopId,
     stopName: selectedStartStop.stopName,
+    stopNumber: selectedStartStop.stopNumber,
     arrivalTime: selectedStartStop.arrivalTime[departureTime],
   }
 
   const alightingStop = {
     stopId: selectedEndStop.stopId,
     stopName: selectedEndStop.stopName,
+    stopNumber: selectedEndStop.stopNumber,
     arrivalTime: selectedEndStop.arrivalTime[departureTime],
   }
 
   return {
     routeId,
+    routeName,
     departureTime,
     boardingStop,
     alightingStop,
