@@ -7,6 +7,7 @@ import BaseModal from '@/components/base/BaseModal.vue'
 
 interface Props {
   open: boolean
+  departureTime: string
 }
 defineProps<Props>()
 </script>

@@ -158,16 +158,14 @@ import Refresh from '@primeicons/vue/refresh'
 import ChevronDown from '@primeicons/vue/chevron-down'
 import ChevronRight from '@primeicons/vue/chevron-right'
 
-import RouteStop from '@/components/RouteStop.vue'
-import DepartureTimeChangeModal from '@/components/DepartureTimeChangeModal.vue'
+import RouteStop from './components/RouteStop.vue'
+import DepartureTimeChangeModal from './components/DepartureTimeChangeModal.vue'
 import RouteReservationBar from './components/RouteReservationBar.vue'
 import ReservationModal from './components/ReservationModal.vue'
 
 import { useRouteStore } from '@/stores/route'
-import { useFavoriteStore } from '@/stores/favorite'
 
 const routeStore = useRouteStore()
-const favoriteStore = useFavoriteStore()
 
 const route = useRoute()
 
@@ -186,17 +184,22 @@ const routeLineTop = computed(() => {
 })
 
 const routeLineHeight = computed(() => {
-  if (routeStore.selectedEndStop) {
-    const sequenceGap =
-      routeStore.selectedEndStop.stopSequence - routeStore.selectedStartStop.stopSequence
+  const startStop = routeStore.selectedStartStop
+  const endStop = routeStore.selectedEndStop
+
+  if (endStop && startStop) {
+    const sequenceGap = endStop.stopSequence - startStop.stopSequence
+
     return `${routeStopRefHeight.value * (sequenceGap - 0.5)}px`
   }
 
-  if (routeStore.selectedStartStop) {
-    return `${routeStopRefHeight.value * ((routeStore.route?.alightingStartSequence || 0) - 0.5 - routeStore.selectedStartStop.stopSequence)}px`
+  if (startStop) {
+    const alightingStartSequence = routeStore.route?.alightingStartSequence ?? 0
+
+    return `${routeStopRefHeight.value * (alightingStartSequence - startStop.stopSequence - 0.5)}px`
   }
 
-  return 0
+  return '0px'
 })
 
 const travelTime = computed(() => {
@@ -254,7 +257,7 @@ const scrollToFirstAlighting = () => {
 }
 
 const fetchRoute = async () => {
-  await routeStore.fetchRoute(route.params.routeId as string)
+  await routeStore.fetchRoute(Number(route.params.routeId))
 
   if (routeStopRef.value[0].root) {
     routeStopRefHeight.value = routeStopRef.value[0].root.getBoundingClientRect().height
@@ -264,14 +267,11 @@ const fetchRoute = async () => {
     return
   }
 
-  selectedDepartureTime.value = routeStore.route?.departureTimes[0]
+  selectedDepartureTime.value = routeStore.departureTime || routeStore.route?.departureTimes[0]
 }
 
-onMounted(() => {
-  fetchRoute()
-
-  // localStorage 기반 데이터 초기화를 위해 임시 호출. 추후 main.ts에서 초기화하도록 변경 예정
-  favoriteStore.loadFavoriteRoutes()
+onMounted(async () => {
+  await fetchRoute()
 })
 onBeforeUnmount(routeStore.$reset)
 </script>

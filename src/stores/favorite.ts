@@ -1,9 +1,14 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-import type { FavoriteRoute, CreateFavoriteRoute } from '@/types'
+import type { FavoriteRoute, CreateFavoriteRoute, UpdateFavoriteNotification } from '@/types'
 
-import { getFavoriteRoutes, addFavoriteRoute, deleteFavoriteRoute } from '@/services/api/favorite'
+import {
+  getFavoriteRoutes,
+  addFavoriteRoute,
+  deleteFavoriteRoute,
+  updateFavoriteNotification,
+} from '@/services/api/favorite'
 
 export const useFavoriteStore = defineStore('favorite', () => {
   const favoriteRoutes = ref<FavoriteRoute[]>([])
@@ -41,5 +46,22 @@ export const useFavoriteStore = defineStore('favorite', () => {
     }
   }
 
-  return { favoriteRoutes, isLoading, loadFavoriteRoutes, addFavorite, deleteFavorite }
+  const updateNotification = async (favoriteId: number, data: UpdateFavoriteNotification) => {
+    try {
+      await updateFavoriteNotification(favoriteId, data)
+      await loadFavoriteRoutes()
+    } catch (error) {
+      errorMessage.value =
+        error instanceof Error ? error.message : '즐겨찾기 알람 수정에 실패했습니다.'
+    }
+  }
+
+  return {
+    favoriteRoutes,
+    isLoading,
+    loadFavoriteRoutes,
+    addFavorite,
+    deleteFavorite,
+    updateNotification,
+  }
 })

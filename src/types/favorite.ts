@@ -1,6 +1,7 @@
 export interface FavoriteRoute {
   favoriteId: number
   routeId: number
+  routeName: string
   departureTime: string
   boardingStop: FavoriteStop
   alightingStop: FavoriteStop
@@ -9,6 +10,7 @@ export interface FavoriteRoute {
 export interface FavoriteStop {
   stopId: number
   stopName: string
+  stopNumber: string
   arrivalTime: string
   isNotification: boolean
 }
@@ -20,4 +22,9 @@ export interface CreateFavoriteRoute {
   departureTime: string
   boardingStop: CreateFavoriteStop
   alightingStop: CreateFavoriteStop
+}
+
+export interface UpdateFavoriteNotification {
+  target: 'boarding' | 'alighting'
+  isNotification: boolean
 }

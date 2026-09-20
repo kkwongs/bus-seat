@@ -33,10 +33,10 @@ export const getMockRoutes = async (params: RouteSearch): Promise<ApiListRespons
   }
 }
 
-export const getMockRoute = async (routeId: string): Promise<ApiResponse<Route | null>> => {
+export const getMockRoute = async (routeId: number): Promise<ApiResponse<Route | null>> => {
   await mockDelay(100)
 
-  const filteredRoute = routes.find((route) => route.routeId === Number(routeId))
+  const filteredRoute = routes.find((route) => route.routeId === routeId)
 
   if (!filteredRoute) {
     return { data: null, status: 404 }

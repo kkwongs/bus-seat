@@ -109,6 +109,8 @@ import { useAuthStore } from '@/stores/auth'
 
 import SectionSpace from '@/components/common/SectionSpace.vue'
 
+import { showUnderDevelopmentAlert } from '@/utils/alert'
+
 const router = useRouter()
 const authStore = useAuthStore()
 
@@ -116,10 +118,6 @@ const handleLogout = () => {
   authStore.logout()
 
   router.push('/login')
-}
-
-const showUnderDevelopmentAlert = () => {
-  alert('해당 기능은 현재 개발 중입니다.')
 }
 </script>
 

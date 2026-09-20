@@ -1,6 +1,6 @@
 import { isFavoriteExists } from '@/utils/favorite'
 
-import type { FavoriteRoute, CreateFavoriteRoute } from '@/types'
+import type { FavoriteRoute, CreateFavoriteRoute, UpdateFavoriteNotification } from '@/types'
 
 const FAVORITE_STORAGE_KEY = 'bus-seat-favorites'
 
@@ -62,4 +62,31 @@ export const removeFavorite = (favoriteId: number): boolean => {
   localStorage.setItem(FAVORITE_STORAGE_KEY, JSON.stringify(nextFavorites))
 
   return true
+}
+
+export const updateFavorite = (
+  favoriteId: number,
+  { target, isNotification }: UpdateFavoriteNotification,
+) => {
+  const favorites = getFavorites()
+
+  const nextFavorites = favorites.map((favorite) => {
+    if (favorite.favoriteId !== favoriteId) {
+      return favorite
+    }
+
+    const stopKey = target === 'boarding' ? 'boardingStop' : 'alightingStop'
+
+    return {
+      ...favorite,
+      [stopKey]: {
+        ...favorite[stopKey],
+        isNotification,
+      },
+    }
+  })
+
+  localStorage.setItem(FAVORITE_STORAGE_KEY, JSON.stringify(nextFavorites))
+
+  return nextFavorites.find((favorite) => favorite.favoriteId === favoriteId)
 }
