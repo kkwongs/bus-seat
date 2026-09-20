@@ -66,8 +66,9 @@
               <div>
                 <div class="flex items-center justify-between">
                   <RouterLink
-                    :to="`/user/routes/${route.routeId}?favoriteId=${route.favoriteId}`"
+                    :to="`/user/routes/${route.routeId}`"
                     class="inline-flex items-end text-xl font-medium"
+                    @click="setReservationInfo(route)"
                   >
                     <span>{{ route.busCode }}</span>
                     <strong>{{ route.busNumber }}</strong>
@@ -290,7 +291,11 @@ import ReservationModal from './components/ReservationModal.vue'
 import { holidays } from '@/constants/holiday'
 import { messages } from '@/constants/messages'
 
-import type { UpdateFavoriteNotification } from '@/types'
+import type { UpdateFavoriteNotification, FavoriteRoute } from '@/types'
+
+import { useRouteStore } from '@/stores/route.ts'
+
+const routeStore = useRouteStore()
 
 const pagination = {
   el: '.custom-pagination',
@@ -388,6 +393,26 @@ const toggleNotification = (favoriteId: number, target: string, isNotification: 
   const data = { target, isNotification } as UpdateFavoriteNotification
 
   favoriteStore.updateNotification(favoriteId, data)
+}
+
+const setReservationInfo = async (route: FavoriteRoute) => {
+  const { routeId, favoriteId, departureTime } = route
+
+  await routeStore.fetchRoute(routeId)
+
+  const { boardingStop, alightingStop } = favoriteStore.favoriteRoutes.find(
+    (favorite) => favorite.favoriteId === favoriteId,
+  ) as FavoriteRoute
+
+  routeStore.selectedStartStop = routeStore.route?.stops.find(
+    (stop) => stop.stopId === boardingStop.stopId,
+  )
+
+  routeStore.selectedEndStop = routeStore.route?.stops.find(
+    (stop) => stop.stopId === alightingStop.stopId,
+  )
+
+  routeStore.departureTime = departureTime
 }
 
 onMounted(favoriteStore.loadFavoriteRoutes)
