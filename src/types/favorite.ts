@@ -23,3 +23,8 @@ export interface CreateFavoriteRoute {
   boardingStop: CreateFavoriteStop
   alightingStop: CreateFavoriteStop
 }
+
+export interface UpdateFavoriteNotification {
+  target: 'boarding' | 'alighting'
+  isNotification: boolean
+}

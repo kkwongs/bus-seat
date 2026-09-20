@@ -106,7 +106,13 @@
                         ? ['border border-sky-500 bg-sky-500 text-slate-100']
                         : ['border border-slate-400 text-slate-400'],
                     ]"
-                    @click="toggleNotification(route.boardingStop)"
+                    @click="
+                      toggleNotification(
+                        route.favoriteId,
+                        'boarding',
+                        !route.boardingStop.isNotification,
+                      )
+                    "
                   >
                     <component
                       :is="route.boardingStop.isNotification ? Bell : BellSlash"
@@ -142,7 +148,13 @@
                         ? ['border border-sky-500 bg-sky-500 text-slate-100']
                         : ['border border-slate-400 text-slate-400'],
                     ]"
-                    @click="toggleNotification(route.alightingStop)"
+                    @click="
+                      toggleNotification(
+                        route.favoriteId,
+                        'alighting',
+                        !route.alightingStop.isNotification,
+                      )
+                    "
                   >
                     <component
                       :is="route.alightingStop.isNotification ? Bell : BellSlash"
@@ -278,6 +290,8 @@ import ReservationModal from './components/ReservationModal.vue'
 import { holidays } from '@/constants/holiday'
 import { messages } from '@/constants/messages'
 
+import type { UpdateFavoriteNotification } from '@/types'
+
 const pagination = {
   el: '.custom-pagination',
   type: 'fraction' as const,
@@ -370,8 +384,10 @@ const removeFavorite = (favoriteId: number) => {
   favoriteStore.deleteFavorite(favoriteId)
 }
 
-const toggleNotification = (target: { isNotification: boolean }) => {
-  target.isNotification = !target.isNotification
+const toggleNotification = (favoriteId: number, target: string, isNotification: boolean) => {
+  const data = { target, isNotification } as UpdateFavoriteNotification
+
+  favoriteStore.updateNotification(favoriteId, data)
 }
 
 onMounted(favoriteStore.loadFavoriteRoutes)

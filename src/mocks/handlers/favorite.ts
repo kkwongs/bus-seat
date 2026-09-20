@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
-import { getFavorites, addFavorite, removeFavorite } from '@/mocks/db/favorite'
-import type { CreateFavoriteRoute } from '@/types'
+import { getFavorites, addFavorite, removeFavorite, updateFavorite } from '@/mocks/db/favorite'
+import type { CreateFavoriteRoute, UpdateFavoriteNotification } from '@/types'
 
 export const handlers = [
   http.get('/api/favorites', () => {
@@ -27,5 +27,19 @@ export const handlers = [
     return new HttpResponse(null, {
       status: 204,
     })
+  }),
+
+  http.put('/api/favorites/:favoriteId', async ({ params, request }) => {
+    const favoriteId = Number(params.favoriteId)
+
+    const data = (await request.json()) as UpdateFavoriteNotification
+
+    const favorite = updateFavorite(favoriteId, data)
+
+    if (!favorite) {
+      return HttpResponse.json({ message: 'Favorite not found' }, { status: 404 })
+    }
+
+    return HttpResponse.json(favorite)
   }),
 ]
