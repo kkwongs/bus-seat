@@ -3,15 +3,16 @@ import { ref } from 'vue'
 
 import * as routeApi from '@/services/api/route'
 
-import type { Route, RouteList, RouteSearch } from '@/types'
+import type { Route, RouteList, RouteSearch, BusStop } from '@/types'
 
 export const useRouteStore = defineStore('route', () => {
   const isLoading = ref<boolean>(false)
   const errorMessage = ref<string>('')
   const routes = ref<RouteList[]>([])
   const route = ref<Route | null>(null)
-  const selectedStartStop = ref()
-  const selectedEndStop = ref()
+  const selectedStartStop = ref<BusStop>()
+  const selectedEndStop = ref<BusStop>()
+  const departureTime = ref<string>('')
 
   const fetchRoutes = async (params: RouteSearch = {}) => {
     isLoading.value = true
@@ -28,7 +29,7 @@ export const useRouteStore = defineStore('route', () => {
     }
   }
 
-  const fetchRoute = async (routeId: string) => {
+  const fetchRoute = async (routeId: number) => {
     try {
       const { data } = await routeApi.getRoute(routeId)
       route.value = data
@@ -43,6 +44,7 @@ export const useRouteStore = defineStore('route', () => {
     route.value = null
     selectedStartStop.value = undefined
     selectedEndStop.value = undefined
+    departureTime.value = ''
   }
 
   return {
@@ -52,6 +54,7 @@ export const useRouteStore = defineStore('route', () => {
     route,
     selectedStartStop,
     selectedEndStop,
+    departureTime,
     fetchRoutes,
     fetchRoute,
     $reset,

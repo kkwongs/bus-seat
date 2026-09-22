@@ -127,16 +127,30 @@
     @close="isModalOpen = false"
   />
 
-  <RouteReservationBar
-    v-if="travelTime"
-    :travel-time="travelTime"
+  <Transition
+    enter-active-class="transition-transform duration-300"
+    enter-from-class="translate-y-full"
+    enter-to-class="translate-y-0"
+  >
+    <RouteReservationBar
+      v-if="travelTime"
+      :travel-time="travelTime"
+      :departure-time="selectedDepartureTime"
+      :route-id="Number(route.params.routeId)"
+      @open-reservation="isOpenReservation = true"
+    />
+  </Transition>
+
+  <ReservationModal
+    :open="isOpenReservation"
     :departure-time="selectedDepartureTime"
-    class="-m-4 lg:-m-8"
+    @close="isOpenReservation = false"
   />
 </template>
 
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 import ArrowRight from '@primeicons/vue/arrow-right'
 import ExclamationCircle from '@primeicons/vue/exclamation-circle'
@@ -144,21 +158,21 @@ import Refresh from '@primeicons/vue/refresh'
 import ChevronDown from '@primeicons/vue/chevron-down'
 import ChevronRight from '@primeicons/vue/chevron-right'
 
-import RouteStop from '@/components/RouteStop.vue'
-import DepartureTimeChangeModal from '@/components/DepartureTimeChangeModal.vue'
+import RouteStop from './components/RouteStop.vue'
+import DepartureTimeChangeModal from './components/DepartureTimeChangeModal.vue'
 import RouteReservationBar from './components/RouteReservationBar.vue'
+import ReservationModal from './components/ReservationModal.vue'
 
 import { useRouteStore } from '@/stores/route'
 
-const props = defineProps<{
-  routeId: string
-}>()
-
 const routeStore = useRouteStore()
+
+const route = useRoute()
 
 const routeStopRef = ref<InstanceType<typeof RouteStop>[]>([])
 const routeStopRefHeight = ref(0)
 const isModalOpen = ref(false)
+const isOpenReservation = ref(false)
 const selectedDepartureTime = ref<string>('')
 
 const routeLineTop = computed(() => {
@@ -170,17 +184,22 @@ const routeLineTop = computed(() => {
 })
 
 const routeLineHeight = computed(() => {
-  if (routeStore.selectedEndStop) {
-    const sequenceGap =
-      routeStore.selectedEndStop.stopSequence - routeStore.selectedStartStop.stopSequence
+  const startStop = routeStore.selectedStartStop
+  const endStop = routeStore.selectedEndStop
+
+  if (endStop && startStop) {
+    const sequenceGap = endStop.stopSequence - startStop.stopSequence
+
     return `${routeStopRefHeight.value * (sequenceGap - 0.5)}px`
   }
 
-  if (routeStore.selectedStartStop) {
-    return `${routeStopRefHeight.value * ((routeStore.route?.alightingStartSequence || 0) - 0.5 - routeStore.selectedStartStop.stopSequence)}px`
+  if (startStop) {
+    const alightingStartSequence = routeStore.route?.alightingStartSequence ?? 0
+
+    return `${routeStopRefHeight.value * (alightingStartSequence - startStop.stopSequence - 0.5)}px`
   }
 
-  return 0
+  return '0px'
 })
 
 const travelTime = computed(() => {
@@ -191,6 +210,11 @@ const travelTime = computed(() => {
   ) {
     return
   }
+
+  if (!(routeStore.selectedStartStop.arrivalTime && routeStore.selectedEndStop.arrivalTime)) {
+    return
+  }
+
   const startArrivalTime = routeStore.selectedStartStop.arrivalTime[selectedDepartureTime.value]
   const endArrivalTime = routeStore.selectedEndStop.arrivalTime[selectedDepartureTime.value]
 
@@ -238,7 +262,7 @@ const scrollToFirstAlighting = () => {
 }
 
 const fetchRoute = async () => {
-  await routeStore.fetchRoute(props.routeId)
+  await routeStore.fetchRoute(Number(route.params.routeId))
 
   if (routeStopRef.value[0].root) {
     routeStopRefHeight.value = routeStopRef.value[0].root.getBoundingClientRect().height
@@ -248,10 +272,12 @@ const fetchRoute = async () => {
     return
   }
 
-  selectedDepartureTime.value = routeStore.route?.departureTimes[0]
+  selectedDepartureTime.value = routeStore.departureTime || routeStore.route?.departureTimes[0]
 }
 
-onMounted(fetchRoute)
+onMounted(async () => {
+  await fetchRoute()
+})
 onBeforeUnmount(routeStore.$reset)
 </script>
 

@@ -26,6 +26,11 @@ const router = createRouter({
       meta: { requiresAuth: true, role: 'USER' },
       children: [
         {
+          path: '',
+          name: 'user-home',
+          component: () => import('@/pages/user/UserHomePage.vue'),
+        },
+        {
           path: 'routes',
           name: 'user-routes',
           component: () => import('@/pages/user/RouteListPage.vue'),
@@ -34,7 +39,6 @@ const router = createRouter({
           path: 'routes/:routeId',
           name: 'user-route-detail',
           component: () => import('@/pages/user/RouteDetailPage.vue'),
-          props: (route) => ({ routeId: route.params.routeId }),
         },
         {
           path: 'my',
@@ -60,11 +64,11 @@ router.beforeEach((to) => {
   }
 
   if (to.name === 'login' && authStore.isAuthenticated) {
-    return authStore.isAdmin ? { name: 'admin' } : { name: 'user' }
+    return authStore.isAdmin ? { name: 'admin' } : { name: 'user-home' }
   }
 
   if (to.meta.role && authStore.user?.role !== to.meta.role) {
-    return authStore.isAdmin ? { name: 'admin' } : { name: 'user' }
+    return authStore.isAdmin ? { name: 'admin' } : { name: 'user-home' }
   }
 
   return true

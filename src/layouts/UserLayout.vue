@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen pb-14 text-slate-900">
+  <div id="user-layout" class="min-h-screen pb-14 text-slate-900">
     <AppHeader />
 
     <div class="flex">

@@ -11,7 +11,7 @@ export const getRoutes = async (params: RouteSearch = {}): Promise<ApiListRespon
   throw new Error('실제 노선 조회 API가 아직 구현되지 않았습니다.')
 }
 
-export const getRoute = async (routeId: string): Promise<ApiResponse<Route | null>> => {
+export const getRoute = async (routeId: number): Promise<ApiResponse<Route | null>> => {
   if (env.useMock) {
     return getMockRoute(routeId)
   }

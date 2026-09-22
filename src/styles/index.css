@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import 'component.css';
+@import 'component';
 
 @layer base {
   :root {
@@ -20,11 +20,18 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  html {
+    scrollbar-gutter: stable;
+  }
+
   body {
     min-width: 360px;
   }
 
   button {
     cursor: pointer;
+  }
+  button:focus-visible {
+    @apply outline-sky-500;
   }
 }

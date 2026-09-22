@@ -1,7 +1,7 @@
 {
   "name": "bus-seat",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,11 +10,15 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@primeicons/vue": "^8.0.0",
     "@tailwindcss/vite": "^4.3.3",
+    "date-fns": "^4.4.0",
     "pinia": "^4.0.2",
+    "swiper": "^14.2.0",
     "tailwindcss": "^4.3.3",
     "vue": "^3.5.40",
     "vue-router": "^5.2.0"
@@ -28,6 +32,9 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-vue": "^10.10.0",
     "globals": "^17.9.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.5.1",
+    "msw": "^2.15.0",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "~6.0.2",
@@ -39,5 +46,13 @@
   "engines": {
     "node": ">=24 <25"
   },
-  "packageManager": "yarn@4.18.0"
+  "packageManager": "yarn@4.18.0",
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
 }
