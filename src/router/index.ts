@@ -64,11 +64,11 @@ router.beforeEach((to) => {
   }
 
   if (to.name === 'login' && authStore.isAuthenticated) {
-    return authStore.isAdmin ? { name: 'admin' } : { name: 'user' }
+    return authStore.isAdmin ? { name: 'admin' } : { name: 'user-home' }
   }
 
   if (to.meta.role && authStore.user?.role !== to.meta.role) {
-    return authStore.isAdmin ? { name: 'admin' } : { name: 'user' }
+    return authStore.isAdmin ? { name: 'admin' } : { name: 'user-home' }
   }
 
   return true
