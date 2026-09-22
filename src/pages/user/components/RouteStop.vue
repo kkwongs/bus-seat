@@ -78,8 +78,8 @@ const isBoarding = computed(() => {
   return boardingEndSequence >= props.stop.stopSequence
 })
 
-const isStopLabelVisible = computed(() => {
-  if (!props.stop.stopNumber) {
+const isStopLabelVisible = computed<boolean>(() => {
+  if (!(props.stop.stopNumber && props.stop.arrivalTime)) {
     return false
   }
 

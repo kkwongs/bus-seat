@@ -10,9 +10,9 @@
             class="grid grid-cols-[repeat(3,auto)] items-center justify-around rounded-2xl border-2 border-slate-200 py-2"
           >
             <div class="space-y-0.5 px-2 text-center">
-              <p>{{ routeStore.selectedStartStop.stopName }}</p>
+              <p>{{ routeStore.selectedStartStop?.stopName }}</p>
               <p class="text-slate-500">
-                {{ routeStore.selectedStartStop.arrivalTime[departureTime] }}
+                {{ routeStore.selectedStartStop?.arrivalTime?.[departureTime] }}
               </p>
             </div>
 
@@ -21,9 +21,9 @@
             </div>
 
             <div class="space-y-0.5 px-2 text-center">
-              <p>{{ routeStore.selectedEndStop.stopName }}</p>
+              <p>{{ routeStore.selectedEndStop?.stopName }}</p>
               <p class="text-slate-500">
-                {{ routeStore.selectedEndStop.arrivalTime[departureTime] }}
+                {{ routeStore.selectedEndStop?.arrivalTime?.[departureTime] }}
               </p>
             </div>
           </div>
@@ -59,7 +59,7 @@ import { useFavoriteStore } from '@/stores/favorite'
 
 import { isFavoriteExists } from '@/utils/favorite'
 
-import type { FavoriteRoute, Route } from '@/types'
+import type { CreateFavoriteRoute } from '@/types'
 
 interface Props {
   travelTime?: string
@@ -75,10 +75,21 @@ const emit = defineEmits<{
 const routeStore = useRouteStore()
 const favoriteStore = useFavoriteStore()
 
-const createFavorite = computed(() => {
+const createFavorite = computed<CreateFavoriteRoute | null>(() => {
   const { routeId, departureTime } = props
-  const { selectedStartStop, selectedEndStop } = routeStore
-  const { routeName } = routeStore.route as Route
+  const { route, selectedStartStop, selectedEndStop } = routeStore
+
+  if (!(
+    route &&
+    selectedStartStop &&
+    selectedEndStop &&
+    selectedStartStop.stopNumber &&
+    selectedEndStop.stopNumber &&
+    selectedStartStop.arrivalTime &&
+    selectedEndStop.arrivalTime
+  )) {
+    return null
+  }
 
   const boardingStop = {
     stopId: selectedStartStop.stopId,
@@ -96,32 +107,48 @@ const createFavorite = computed(() => {
 
   return {
     routeId,
-    routeName,
+    routeName: route.routeName,
     departureTime,
     boardingStop,
     alightingStop,
   }
 })
 
-const isFavorite = computed(() =>
-  isFavoriteExists(favoriteStore.favoriteRoutes, createFavorite.value),
-)
+const isFavorite = computed(() => {
+  if (!createFavorite.value) {
+    return null
+  }
+
+  return isFavoriteExists(favoriteStore.favoriteRoutes, createFavorite.value)
+})
 
 const removeFavorite = () => {
-  const { routeId, departureTime, boardingStop, alightingStop } = createFavorite.value
+  const favoriteRoute = createFavorite.value
 
-  const { favoriteId } = favoriteStore.favoriteRoutes.find(
+  if (!favoriteRoute) {
+    return alert('즐겨찾기 정보를 확인할 수 없습니다.')
+  }
+
+  const favorite = favoriteStore.favoriteRoutes.find(
     (favorite) =>
-      favorite.routeId === routeId &&
-      favorite.departureTime === departureTime &&
-      favorite.boardingStop.stopId === boardingStop.stopId &&
-      favorite.alightingStop.stopId === alightingStop.stopId,
-  ) as FavoriteRoute
+      favorite.routeId === favoriteRoute.routeId &&
+      favorite.departureTime === favoriteRoute.departureTime &&
+      favorite.boardingStop.stopId === favoriteRoute.boardingStop.stopId &&
+      favorite.alightingStop.stopId === favoriteRoute.alightingStop.stopId,
+  )
 
-  favoriteStore.deleteFavorite(favoriteId)
+  if (!favorite) {
+    return alert('해당 즐겨찾기를 찾을 수 없습니다.')
+  }
+
+  favoriteStore.deleteFavorite(favorite.favoriteId)
 }
 
 const addFavorite = () => {
+  if (!createFavorite.value) {
+    return alert('즐겨찾기 정보를 확인할 수 없습니다.')
+  }
+
   favoriteStore.addFavorite(createFavorite.value)
 }
 

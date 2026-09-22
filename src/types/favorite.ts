@@ -19,6 +19,7 @@ export type CreateFavoriteStop = Omit<FavoriteStop, 'isNotification'>
 
 export interface CreateFavoriteRoute {
   routeId: number
+  routeName: string
   departureTime: string
   boardingStop: CreateFavoriteStop
   alightingStop: CreateFavoriteStop

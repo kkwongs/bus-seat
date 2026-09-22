@@ -210,6 +210,11 @@ const travelTime = computed(() => {
   ) {
     return
   }
+
+  if (!(routeStore.selectedStartStop.arrivalTime && routeStore.selectedEndStop.arrivalTime)) {
+    return
+  }
+
   const startArrivalTime = routeStore.selectedStartStop.arrivalTime[selectedDepartureTime.value]
   const endArrivalTime = routeStore.selectedEndStop.arrivalTime[selectedDepartureTime.value]
 
