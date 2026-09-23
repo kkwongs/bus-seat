@@ -44,6 +44,10 @@ jobs:
           VITE_USE_MOCK: 'true'
         run: yarn build
 
+      - name: Copy index.html to 404.html
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: cp dist/index.html dist/404.html
+
       - name: Upload static files as artifact
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/upload-pages-artifact@v3
